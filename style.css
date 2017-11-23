@@ -1,0 +1,21 @@
+.flag{
+
+  height: 400px;
+}
+.countryName{
+  background-color:  blue;
+  height: 400px;
+}
+.charts{
+  background-color:  green;
+  height: 450px;
+}
+.countryChart{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  margin: 10px;
+}
+.hideEmptySpace{
+  visibility: hidden;
+}
