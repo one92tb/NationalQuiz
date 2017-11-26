@@ -11,11 +11,13 @@ nationalQuiz.Controller = class {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         const countryId = Math.floor(Math.random() * 250) + 1;
         this.countryNameView.drawChartBoxes(data, countryId);
         this.flagView.drawFlag(data, countryId);
         this.chartsView.shuffle(data, countryId);
+
       });
   }
+
+
 }
