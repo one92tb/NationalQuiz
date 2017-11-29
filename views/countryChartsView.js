@@ -4,6 +4,7 @@ nationalQuiz.ChartsView = class {
     this.charts = document.getElementById('charts');
     this.result = [];
     this.countryPlace = document.getElementById('countryPlace');
+    this.dropzone = document.getElementsByClassName('dropzone')[0];
 
     document.addEventListener('drag', this.drag);
     document.addEventListener('dragstart', this.dragStart.bind(this));
@@ -18,8 +19,8 @@ nationalQuiz.ChartsView = class {
 
     for (let i = 0; i < tableLetters.length; i++) {
       countryCharts += `
-      <div class ="dropzone" id="dropzone">
-        <div class="countryChart draggable="true" draggable="true"><span class="letters">${tableLetters[i]}</span></div>
+      <div class ="dropzone">
+        <div class="countryChart" draggable="true"><span class="letters">${tableLetters[i]}</span></div>
       </div>
       `
     }

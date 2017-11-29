@@ -5,13 +5,14 @@ nationalQuiz.CountryNameView = class {
     this.countryPlace = document.getElementById('countryPlace');
     this.flag = document.getElementById('flag');
 
+
   }
 
   drawChartBoxes(data, countryId) {
     let countryCharts = '';
 
     for (let i = 0; i < data[countryId].name.length; i++) {
-      countryCharts += `<div class="dropzone" id="dropzone"></div>`
+      countryCharts += `<div class="dropzone"></div>`
     }
     this.countryPlace.innerHTML = countryCharts;
   //  this.removeEmptyFields();

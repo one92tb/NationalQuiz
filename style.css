@@ -1,48 +1,99 @@
 HTML, body {
   min-height: 100%;
-  background-color: #d1d1e0;
+  background: lightblue url("img/earth-map.jpeg") no-repeat fixed;
+}
+
+.header {
+  background: #e0e0eb;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.nationalQuiz {
+  font-size: 60px;
+  text-align: center;
+}
+
+/* SECTION 1 */
+
+.user {
+  font-size: 25px;
+}
+.userName,.userScore,.userLife{
+  width: 100%
+}
+.user, .buttons {
+  background: #e0e0eb;
+  height: 150px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  margin: 0 0 20px 0;
+}
+
+.button {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* SECTION 2 */
+.countryCharts {
+  background-color: #e0e0eb;
 }
 
 .flag {
-
-  border-right: 1px solid #000000;
-  box-sizing: border-box;
-  background-color: #d1d1e0;
+  background-color: #e0e0eb;
 }
 
 .countryName {
-  background-color: #d1d1e0;
-}
-
-.countryCharts {
-  border-top: 1px solid #000000;
-    background-color: #d1d1e0;
+  background-color: #e0e0eb;
 }
 
 .countryChart {
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   background-color: #ffffff;
   margin: 10px;
+  display: table;
   border: 1px solid #000000;
-  display:table;
+}
+
+.dropzone {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  margin: 10px;
+  float: left;
+}
+
+.flag, .countryCharts{
+  margin: 0 0 20px 0;
+}
+.flag{
+display: flex;
+justify-content: center;
+padding: 10px;
 }
 
 .hideEmptySpace {
   visibility: hidden;
 }
 
-.dropzone {
-  width: 70px;
-  height: 70px;
-  background-color: #ffffff;
-  margin: 10px;
-}
 
 .letters {
-  font-size: 30px;
+  font-size: 15px;
   text-align: center;
-  display:table-cell;
-  vertical-align:middle;
+  display: table-cell;
+  vertical-align: middle;
+}
+.countryName{
 
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
 }

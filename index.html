@@ -3,25 +3,62 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title></title>
   <link href="style.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
 <body>
+  <header>
+    <div class="container header">
+      <span class="nationalQuiz">National Quiz</span>
+    </div>
+  </header>
+
   <div class="main">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 flag" id="flag"></div>
-        <div class="col-md-6 countryName">
-          <div class="row" id="countryPlace">
+    <section  class = "firstSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 user">
+            <div class = "userName" >User name: <span class="userValue">Lukas</span></div>
+            <div class = "userScore">Score: <span class="scoreValue">300</span></div>
+            <div class = "userLife">Life: <span class="lifeValue">3x</span></div>
+          </div>
+          <div class="col-md-6 buttons">
+            <button class="button">Buy Hint for 100$</button>
+            <button class="button">Change Country for 500$</button>
           </div>
         </div>
-        <div class="col-md-12 countryCharts row" id="charts"></div>
       </div>
+    </section>
 
-    </div>
+    <section class = "secondSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 flag" id="flag"></div>
+          <div class="col-md-6 countryCharts" id="charts"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class = "thirdSection">
+      <div class="container">
+        <div class="row">
+          <div class="countryName">
+            <div class="" id="countryPlace"></div>
+          </div>
+        </div>
+      </div>
+    </section class = "fourthSection">
+      Tablica Rekordów
+    <section>
+
+    </section>
   </div>
+
+
 
 
   <script type="text/javascript" src="namespace.js"></script>

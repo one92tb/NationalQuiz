@@ -6,7 +6,7 @@ nationalQuiz.FlagView = class {
   }
 
   drawFlag(data, countryId) {
-    let flagImg = `<img src="${data[countryId].flag}"  height="100%" width="100%">`;
+    let flagImg = `<img src="${data[countryId].flag}"  height="250px" width="250px">`;
     this.flag.innerHTML = flagImg;
   }
 }
