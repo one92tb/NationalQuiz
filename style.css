@@ -23,9 +23,11 @@ HTML, body {
 .user {
   font-size: 25px;
 }
-.userName,.userScore,.userLife{
+
+.userName, .userScore, .userLife {
   width: 100%
 }
+
 .user, .buttons {
   background: #e0e0eb;
   height: 150px;
@@ -41,15 +43,12 @@ HTML, body {
 }
 
 /* SECTION 2 */
+
 .countryCharts {
   background-color: #e0e0eb;
 }
 
 .flag {
-  background-color: #e0e0eb;
-}
-
-.countryName {
   background-color: #e0e0eb;
 }
 
@@ -70,30 +69,46 @@ HTML, body {
   float: left;
 }
 
-.flag, .countryCharts{
+
+
+.flag {
+  display: block;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+.flag, .countryCharts {
   margin: 0 0 20px 0;
 }
-.flag{
-display: flex;
-justify-content: center;
-padding: 10px;
+
+.countryCharts .dragAndDrop{
+ display: flex;
+ align-content: center;
+ flex-wrap: wrap;
+ padding: 10px;
 }
+.countryPlace{
+  background-color: #e0e0eb;
+  width: 100%;
+  padding: 30px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
 .hideEmptySpace {
   visibility: hidden;
 }
-
+.displayNone{
+  display: none;
+}
 
 .letters {
   font-size: 15px;
   text-align: center;
   display: table-cell;
   vertical-align: middle;
-}
-.countryName{
-
-  width: 100%;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
 }
