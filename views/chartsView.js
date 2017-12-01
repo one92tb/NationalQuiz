@@ -3,8 +3,6 @@ nationalQuiz.ChartsView = class {
     this.controller = controller;
     this.charts = document.getElementsByClassName('countryCharts')[0];
     this.countryPlace = document.getElementsByClassName('countryPlace')[0];
-
-
   }
 
 
@@ -42,8 +40,4 @@ nationalQuiz.ChartsView = class {
     }
 
   }
-
-
-
-
 }

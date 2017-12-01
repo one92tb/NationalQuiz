@@ -1,9 +1,11 @@
 nationalQuiz.Controller = class {
 
-  initialize(countryNameView, flagView, chartsView){
+  initialize(model, countryNameView, flagView, chartsView, userView){
+    this.model = model;
     this.countryNameView = countryNameView;
     this.flagView = flagView;
     this.chartsView = chartsView;
+    this.userView = userView;
     this.fetchDataApi();
   }
 
@@ -15,8 +17,19 @@ nationalQuiz.Controller = class {
         this.countryNameView.drawChartBoxes(data, countryId);
         this.flagView.drawFlag(data, countryId);
         this.chartsView.shuffle(data, countryId);
-
       });
+  }
+  save(obj){
+    this.model.userData = obj;
+  }
+  addScore(score){
+    this.model.addUserScore(score);
+  }
+  removeLife(life){
+    this.model.removeUserLife(life);
+  }
+  getUserData(){
+    return this.model.userData;
   }
 
 

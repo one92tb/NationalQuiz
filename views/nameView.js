@@ -11,16 +11,18 @@ nationalQuiz.CountryNameView = class {
     document.addEventListener('dragend', this.dragEnd.bind(this));
     document.addEventListener('dragover', this.dragOver.bind(this));
     document.addEventListener('drop', this.drop.bind(this));
-    
+
+
   }
 
   drawChartBoxes(data, countryId) {
     let countryCharts = '';
+    this.country = data[countryId].name;
 
     for (let i = 0; i < data[countryId].name.length; i++) {
       if (data[countryId].name[i] !== ' ') {
         countryCharts += `<div class="dropzone" draggable="false"></div>`
-      }else{
+      } else {
         countryCharts += `<div class="hideEmptySpace dropzone" draggable="false">YY</div>`
       }
     }
@@ -39,8 +41,11 @@ nationalQuiz.CountryNameView = class {
 
       if (result === this.country) { // compare result with country name
         this.setBackgroundLetter('green');
+        this.controller.addScore(100);
+        this.test();
       } else {
         this.setBackgroundLetter('red');
+        this.controller.removeLife(-1);
       }
     } else {
       this.setBackgroundLetter('white');
@@ -53,7 +58,11 @@ nationalQuiz.CountryNameView = class {
     }
   }
 
-  drag() {}
+  test(){
+    $(window).on('load', function() {
+      $('#successModal').modal('show');
+    });
+  }
 
   dragStart() {
     this.dragged = event.target;

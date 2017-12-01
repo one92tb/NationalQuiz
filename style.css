@@ -98,7 +98,6 @@ HTML, body {
   flex-wrap: wrap;
 }
 
-
 .hideEmptySpace {
   visibility: hidden;
 }
@@ -107,8 +106,17 @@ HTML, body {
 }
 
 .letters {
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+}
+.modalButton{
+  width: 100%;
+  margin: 10px 20px;
+}
+.modalButtons{
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid #e9ecef;
 }
