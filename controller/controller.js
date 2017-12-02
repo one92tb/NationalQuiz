@@ -31,6 +31,4 @@ nationalQuiz.Controller = class {
   getUserData(){
     return this.model.userData;
   }
-
-
 }

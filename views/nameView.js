@@ -5,7 +5,6 @@ nationalQuiz.CountryNameView = class {
     this.countryPlace = document.getElementsByClassName('countryPlace')[0];
     this.charts = document.getElementsByClassName('countryCharts')[0];
 
-
     document.addEventListener('drag', this.drag);
     document.addEventListener('dragstart', this.dragStart.bind(this));
     document.addEventListener('dragend', this.dragEnd.bind(this));
@@ -27,7 +26,7 @@ nationalQuiz.CountryNameView = class {
       }
     }
     this.countryPlace.innerHTML = countryCharts;
-    //  this.removeEmptyFields();
+    
   }
   matchCountry() {
 
@@ -41,11 +40,12 @@ nationalQuiz.CountryNameView = class {
 
       if (result === this.country) { // compare result with country name
         this.setBackgroundLetter('green');
-        this.controller.addScore(100);
-        this.test();
+        this.controller.addScore();
+        window.addEventListener('load', this.successModal());
       } else {
         this.setBackgroundLetter('red');
-        this.controller.removeLife(-1);
+        this.controller.removeLife();
+        window.addEventListener('load', this.failModal());
       }
     } else {
       this.setBackgroundLetter('white');
@@ -58,10 +58,12 @@ nationalQuiz.CountryNameView = class {
     }
   }
 
-  test(){
-    $(window).on('load', function() {
+  successModal(){
       $('#successModal').modal('show');
-    });
+  }
+
+  failModal(){
+      $('#failModal').modal('show');
   }
 
   dragStart() {

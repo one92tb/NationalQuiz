@@ -38,6 +38,5 @@ nationalQuiz.ChartsView = class {
         document.getElementsByClassName('countryCharts')[0].children[i].classList.add('displayNone');
       }
     }
-
   }
 }

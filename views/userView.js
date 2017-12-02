@@ -4,6 +4,9 @@ nationalQuiz.UserView = class {
     this.controller = controller;
 
     this.insertUserName = document.getElementsByClassName('insertUserName')[0];
+    this.buttonNextCountry = document.getElementsByClassName('btnNextCountry')[0];
+    this.btnAgainCountry = document.getElementsByClassName('btnAgainCountry')[0];
+
     this.userValue = document.getElementsByClassName('userValue')[0];
     this.lifeValue = document.getElementsByClassName('lifeValue')[0];
     this.scoreValue = document.getElementsByClassName('scoreValue')[0];
@@ -15,11 +18,10 @@ nationalQuiz.UserView = class {
     this.easyButton.addEventListener('click', this.easyMode.bind(this));
     this.mediumButton.addEventListener('click', this.mediumMode.bind(this));
     this.hardButton.addEventListener('click', this.hardMode.bind(this));
-  }
 
-  /*  initApp(){
-      this.userValue.innerText = this.insertUserName.value;
-    }*/
+    this.buttonNextCountry.addEventListener('click', this.refreshUserData.bind(this));
+    this.btnAgainCountry.addEventListener('click', this.refreshUserData.bind(this));
+  }
 
   easyMode() {
     this.setBasicValue(3, 0);
@@ -48,7 +50,7 @@ nationalQuiz.UserView = class {
     })
   }
 
-  refreshValue() {
+  refreshUserData() {
     this.userValue.innerText = this.controller.getUserData()[0].name;
     this.lifeValue.innerText = this.controller.getUserData()[0].life;
     this.scoreValue.innerText = this.controller.getUserData()[0].score;
