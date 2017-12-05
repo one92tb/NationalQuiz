@@ -12,133 +12,191 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-<body>
-  <header>
-    <div class="container header">
-      <span class="nationalQuiz">National Quiz</span>
+  <body>
+    <header>
+      <div class="container header">
+        <span class="nationalQuiz">National Quiz</span>
+      </div>
+    </header>
+
+    <div class="main">
+      <section class="firstSection">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 user">
+              <div class="userName">User name: <span class="userValue"></span></div>
+              <div class="userLife">Life: <span class="lifeValue"></span></div>
+              <div class="userScore">Score: <span class="scoreValue"></span></div>
+            </div>
+            <div class="col-md-6 buttons">
+              <button class="button btnHint">Buy Hint for 100$</button>
+              <button class="button btnShowCountry">Show Country for 1000$</button>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secondSection">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 flag"></div>
+            <div class="col-md-6 countryCharts ChartsZone"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="thirdSection">
+        <div class="container">
+          <div class="row">
+            <div class="countryPlace ChartsZone">
+
+            </div>
+          </div>
+        </div>
+      </section class="fourthSection">
+
+
+      <div class="modal fade"  id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+              Username: <input type="text" class="insertUserName"></input>
+            </div>
+            <div class=" modalButtons">
+              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Easy</button>
+              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Medium</button>
+              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Hard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="successModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Very good answer + 100 points !!!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class=" modalButtons">
+              <button type="button" class="btn btn-primary modalButton btnNextCountry" data-dismiss="modal">Next country</button>
+              <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="failModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Oh no! You are so bad ;(</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class=" modalButtons">
+              <button type="button" class="btn btn-primary modalButton btnAgainCountry" data-dismiss="modal">One more time</button>
+              <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <div class="main">
-    <section class="firstSection">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 user">
-            <div class="userName">User name: <span class="userValue"></span></div>
-            <div class="userLife">Life: <span class="lifeValue"></span></div>
-            <div class="userScore">Score: <span class="scoreValue"></span></div>
-          </div>
-          <div class="col-md-6 buttons">
-            <button class="button">Buy Hint for 100$</button>
-            <button class="button">Change Country for 500$</button>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="secondSection">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 flag"></div>
-          <div class="col-md-6 countryCharts"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="thirdSection">
-      <div class="container">
-        <div class="row">
-          <div class="countryPlace">
-
-          </div>
-        </div>
-      </div>
-    </section class="fourthSection">
-
-    <section>
-      Tablica Rekordów
-    </section>
-
-    <div class="modal fade" id="myModal">
+    <div class="modal fade" id="gameOverModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Game Over! Your score: <span class="finalScore"></span></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class=" modalButtons">
+            <button type="button" class="btn btn-primary modalButton btnStartAgain" data-dismiss="modal">New Game</button>
           </div>
           <div class="modal-body">
-            Username: <input type="text" class="insertUserName"></input>
-          </div>
-          <div class=" modalButtons">
-            <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Easy</button>
-            <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Medium</button>
-            <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Hard</button>
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="card">
+                <div class="card-header" role="tab" id="headingOne">
+                  <h5 class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      The best results - Easy
+                    </a>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="card-block easyScore">
+
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      The best results - Medium
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="card-block mediumScore">
+
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="headingThree">
+                  <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      The best results - Hard
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="card-block hardScore">
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="modal fade" id="successModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Very good answer + 100 points !!!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          </div>
-          <div class=" modalButtons">
-            <button type="button" class="btn btn-primary modalButton btnNextCountry" data-dismiss="modal">Next country</button>
-            <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game</button>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="modal fade" id="failModal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Oh no! U are so bad ;(</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          </div>
-          <div class=" modalButtons">
-            <button type="button" class="btn btn-primary modalButton btnAgainCountry" data-dismiss="modal">Try Again</button>
-            <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script type="text/javascript" src="namespace.js"></script>
+    <script type="text/javascript" src="model/model.js"></script>
+    <script type="text/javascript" src="controller/controller.js"></script>
+    <script type="text/javascript" src="views/countryView.js"></script>
+    <script type="text/javascript" src="views/flagView.js"></script>
+    <script type="text/javascript" src="views/chartsView.js"></script>
+    <script type="text/javascript" src="views/userView.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 
+    <script type="text/javascript">
+      $(window).on('load', function() {
+        $('#myModal').modal('show');
+      });
 
-
-  </div>
-
-
-
-
-
-
-
-  <script type="text/javascript" src="namespace.js"></script>
-  <script type="text/javascript" src="model/model.js"></script>
-  <script type="text/javascript" src="controller/controller.js"></script>
-  <script type="text/javascript" src="views/nameView.js"></script>
-  <script type="text/javascript" src="views/flagView.js"></script>
-  <script type="text/javascript" src="views/chartsView.js"></script>
-  <script type="text/javascript" src="views/userView.js"></script>
-  <script type="text/javascript" src="main.js"></script>
-
-  <script type="text/javascript">
-    $(window).on('load', function() {
-      $('#myModal').modal('show');
-    });
-  </script>
+    $('#myModal').addClass('blackBagroundModal');
+      /*window.onbeforeunload = function(event) {
+            return confirm("Confirm refresh");
+          };
+        */
+    </script>
 
 </head>
 </body>

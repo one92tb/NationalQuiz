@@ -17,16 +17,22 @@ nationalQuiz.Controller = class {
         this.countryNameView.drawChartBoxes(data, countryId);
         this.flagView.drawFlag(data, countryId);
         this.chartsView.shuffle(data, countryId);
+        this.countryNameView.shuffleEmptyDropZone();
       });
   }
   save(obj){
     this.model.userData = obj;
   }
   addScore(score){
-    this.model.addUserScore(score);
+    this.model.updateUserScore(score);
   }
-  removeLife(life){
-    this.model.removeUserLife(life);
+  removeScore(score){
+    this.model.updateUserScore(score);
+    this.userView.refreshUserData();
+  }
+
+  removeLife(){
+    this.model.removeUserLife();
   }
   getUserData(){
     return this.model.userData;

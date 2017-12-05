@@ -1,5 +1,6 @@
 nationalQuiz.Model = class {
   constructor() {
+
     this.user = [];
 
     if (!localStorage.user) {
@@ -7,29 +8,26 @@ nationalQuiz.Model = class {
     }
   }
 
+  //user
   set userData(obj) {
     this.user = JSON.parse(localStorage.user);
     this.user.push(obj);
-    this.onlyActualUser();
     localStorage.user = JSON.stringify(this.user);
   }
 
   get userData() {
     return JSON.parse(localStorage.user);
   }
-  onlyActualUser(){
-    if (this.user.length === 2){
-      this.user.splice(0,1);
-    }
-  }
-  addUserScore(score){
+
+  updateUserScore(score) {
     this.user = JSON.parse(localStorage.user);
-    this.user[0].score += 100;
+    this.user[this.user.length-1].score += score;
     localStorage.user = JSON.stringify(this.user);
   }
-  removeUserLife(life){
+  removeUserLife() {
     this.user = JSON.parse(localStorage.user);
-    this.user[0].life += -1;
+    this.user[this.user.length-1].life += -1;
     localStorage.user = JSON.stringify(this.user);
   }
+
 }

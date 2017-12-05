@@ -12,7 +12,7 @@ nationalQuiz.ChartsView = class {
     for (let i = 0; i < tableLetters.length; i++) {
         countryCharts += `
       <div class ="dropzone" draggable="false">
-        <div class="countryChart" draggable="true"><span draggable="false" class="letters">${tableLetters[i]}</span></div>
+        <div class="countryChart" draggable="true"><span draggable="false" class="letters">${tableLetters[i]}</div>
       </div>
       `
     }
@@ -21,7 +21,6 @@ nationalQuiz.ChartsView = class {
   }
 
   shuffle(data, countryId) {
-
     this.country = data[countryId].name;
     this.tableLetters = this.country.split('');
 
