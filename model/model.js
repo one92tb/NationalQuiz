@@ -8,7 +8,6 @@ nationalQuiz.Model = class {
     }
   }
 
-  //user
   set userData(obj) {
     this.user = JSON.parse(localStorage.user);
     this.user.push(obj);
@@ -24,9 +23,9 @@ nationalQuiz.Model = class {
     this.user[this.user.length-1].score += score;
     localStorage.user = JSON.stringify(this.user);
   }
-  removeUserLife() {
+  removeUserLife(life) {
     this.user = JSON.parse(localStorage.user);
-    this.user[this.user.length-1].life += -1;
+    this.user[this.user.length-1].life += life;
     localStorage.user = JSON.stringify(this.user);
   }
 

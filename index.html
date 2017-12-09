@@ -67,12 +67,12 @@
         </button>
             </div>
             <div class="modal-body">
-              Username: <input type="text" class="insertUserName"></input>
+              Username: <input type="text" class="userNameInput"></input>
             </div>
             <div class=" modalButtons">
-              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Easy</button>
-              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Medium</button>
-              <button type="button" class="btn btn-primary modalButton" data-dismiss="modal">Hard</button>
+              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Easy</button>
+              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Medium</button>
+              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Hard</button>
             </div>
           </div>
         </div>
@@ -88,8 +88,8 @@
         </button>
             </div>
             <div class=" modalButtons">
-              <button type="button" class="btn btn-primary modalButton btnNextCountry" data-dismiss="modal">Next country</button>
-              <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+              <button type="button" class="btn btn-primary btnModal btnGoodAnswer" data-dismiss="modal">Next country</button>
+              <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
             </div>
           </div>
         </div>
@@ -105,8 +105,8 @@
         </button>
             </div>
             <div class=" modalButtons">
-              <button type="button" class="btn btn-primary modalButton btnAgainCountry" data-dismiss="modal">One more time</button>
-              <button type="button" class="btn btn-primary modalButton btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+              <button type="button" class="btn btn-primary btnModal btnWrongAnswer" data-dismiss="modal">One more time</button>
+              <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@
             </button>
           </div>
           <div class=" modalButtons">
-            <button type="button" class="btn btn-primary modalButton btnStartAgain" data-dismiss="modal">New Game</button>
+            <button type="button" class="btn btn-primary btnModal btnNewGame" data-dismiss="modal">New Game</button>
           </div>
           <div class="modal-body">
             <div id="accordion" role="tablist" aria-multiselectable="true">
@@ -180,10 +180,16 @@
     <script type="text/javascript" src="namespace.js"></script>
     <script type="text/javascript" src="model/model.js"></script>
     <script type="text/javascript" src="controller/controller.js"></script>
-    <script type="text/javascript" src="views/countryView.js"></script>
-    <script type="text/javascript" src="views/flagView.js"></script>
-    <script type="text/javascript" src="views/chartsView.js"></script>
-    <script type="text/javascript" src="views/userView.js"></script>
+    <script type="text/javascript" src="views/country.js"></script>
+    <script type="text/javascript" src="views/flag.js"></script>
+    <script type="text/javascript" src="views/charts.js"></script>
+    <script type="text/javascript" src="views/user.js"></script>
+
+    <script type="text/javascript" src="views/modals/initModal.js"></script>
+    <script type="text/javascript" src="views/modals/successModal.js"></script>
+    <script type="text/javascript" src="views/modals/failModal.js"></script>
+    <script type="text/javascript" src="views/modals/gameOverModal.js"></script>
+
     <script type="text/javascript" src="main.js"></script>
 
     <script type="text/javascript">

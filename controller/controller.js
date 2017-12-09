@@ -1,11 +1,17 @@
 nationalQuiz.Controller = class {
 
-  initialize(model, countryNameView, flagView, chartsView, userView){
+  initialize(model, countryNameView, flagView, chartsView, userView, initModalView, successModalView, failModalView, gameOverModalView) {
     this.model = model;
     this.countryNameView = countryNameView;
     this.flagView = flagView;
     this.chartsView = chartsView;
     this.userView = userView;
+
+    this.initModalView = initModalView;
+    this.successModalView = successModalView;
+    this.failModalView = failModalView;
+    this.gameOverModalView = gameOverModalView;
+
     this.fetchDataApi();
   }
 
@@ -13,6 +19,7 @@ nationalQuiz.Controller = class {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
       .then(data => {
+
         const countryId = Math.floor(Math.random() * 250) + 1;
         this.countryNameView.drawChartBoxes(data, countryId);
         this.flagView.drawFlag(data, countryId);
@@ -20,21 +27,30 @@ nationalQuiz.Controller = class {
         this.countryNameView.shuffleEmptyDropZone();
       });
   }
-  save(obj){
+  save(obj) {
     this.model.userData = obj;
+    this.userView.refreshUserData();
   }
-  addScore(score){
-    this.model.updateUserScore(score);
-  }
-  removeScore(score){
+  updateScore(score) {
     this.model.updateUserScore(score);
     this.userView.refreshUserData();
   }
 
-  removeLife(){
-    this.model.removeUserLife();
+  updateLife(life) {
+    this.model.removeUserLife(life);
+    this.userView.refreshUserData();
   }
-  getUserData(){
+  getUserData() {
     return this.model.userData;
+  }
+
+  handleHint() {
+    this.countryNameView.showHint();
+  }
+  handleCountryHint(){
+    this.countryNameView.showCountryHint();
+  }
+  createFinalScore(){
+    this.gameOverModalView.fillFinalScore();
   }
 }
