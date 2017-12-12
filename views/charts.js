@@ -11,8 +11,8 @@ nationalQuiz.ChartsView = class {
 
     for (let i = 0; i < tableLetters.length; i++) {
         countryCharts += `
-      <div class ="dropzone" draggable="false">
-        <div class="countryChart" draggable="true"><span draggable="false" class="letters">${tableLetters[i]}</div>
+      <div class ="dropzone">
+        <div class="countryChart" draggable="true"><span class="letters">${tableLetters[i]}</div>
       </div>
       `
     }

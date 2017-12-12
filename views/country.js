@@ -6,19 +6,27 @@ nationalQuiz.CountryNameView = class {
 
     this.countryPlace = document.getElementsByClassName('countryPlace')[0];
     this.charts = document.getElementsByClassName('countryCharts')[0];
-    this.chart = document.getElementsByClassName('letters')[0];
+    this.chart = document.getElementsByClassName('countryChart')[0];
 
-    document.addEventListener('drag', this.drag);
-    document.addEventListener('dragstart', this.dragStart.bind(this));
-    document.addEventListener('dragend', this.dragEnd.bind(this));
-    document.addEventListener('dragover', this.dragOver.bind(this));
-    document.addEventListener('drop', this.drop.bind(this));
+    this.chartsZone1 = document.getElementsByClassName('ChartsZone')[0];
+    this.chartsZone2 = document.getElementsByClassName('ChartsZone')[1];
+
+    this.chartsZone1.addEventListener('drag', this.drag);
+    this.chartsZone1.addEventListener('dragstart', this.dragStart.bind(this));
+    this.chartsZone1.addEventListener('dragend', this.dragEnd.bind(this));
+    this.chartsZone1.addEventListener('dragover', this.dragOver.bind(this));
+    this.chartsZone1.addEventListener('drop', this.drop.bind(this));
+
+    this.chartsZone2.addEventListener('drag', this.drag);
+    this.chartsZone2.addEventListener('dragstart', this.dragStart.bind(this));
+    this.chartsZone2.addEventListener('dragend', this.dragEnd.bind(this));
+    this.chartsZone2.addEventListener('dragover', this.dragOver.bind(this));
+    this.chartsZone2.addEventListener('drop', this.drop.bind(this));
 
     this.successModal = '#successModal';
     this.failModal = '#failModal';
     this.gameOverModal = '#gameOverModal';
   }
-
 
   drawChartBoxes(data, countryId) {
     let countryCharts = '';
@@ -32,7 +40,6 @@ nationalQuiz.CountryNameView = class {
       }
     }
     this.countryPlace.innerHTML = countryCharts;
-
   }
 
   matchCountry() {
@@ -80,13 +87,13 @@ nationalQuiz.CountryNameView = class {
     this.dropzoneDivs = []; // here We have random letters, example 'cuba' - > 'c','a','b','u'
     let a = this.EmptyDropzoneToHint.length;
     let b = 0;
-    console.log(this.counter);
 
     while (a--) {
       b = Math.floor(Math.random() * (a + 0));
       this.dropzoneDivs.push(this.EmptyDropzoneToHint[b]);
       this.EmptyDropzoneToHint.splice(b, 1);
     }
+    console.log(this.dropzoneDivs);
   }
 
   showHint() {
@@ -122,33 +129,59 @@ nationalQuiz.CountryNameView = class {
     })
   }
 
-  dragStart() {
-    this.dragged = event.target;
-    event.target.style.opacity = .5;
-  }
+  drag() {
+    if (event.target.classList.contains('countryCharts') || event.target.classList.contains('dropzone') || event.target.classList.contains('letters')) {
 
-  dragEnd() {
-    event.target.style.opacity = "";
-  }
-
-  dragOver() {
-    event.preventDefault();
-  }
-
-  dragLeave() {
-    if (event.target.className == "dropzone") {
-      event.target.style.background = "";
+      return false;
     }
   }
 
-  drop() {
+  dragStart() {
+
+    this.dragged = event.target;
+    if (this.dragged.classList.contains('countryCharts') || this.dragged.classList.contains('dropzone') || this.dragged.classList.contains('letters')) {
+
+      return false;
+
+    }
+  }
+
+  dragEnd() {
+    if (event.target.classList.contains('countryCharts') || event.target.classList.contains('dropzone') || event.target.classList.contains('letters')) {
+
+      console.log('a');
+    }
+  }
+
+  dragOver() {
+    console.log(event.target);
     event.preventDefault();
 
+
+  }
+
+  dragLeave() {
+
+
+
     if (event.target.className == "dropzone") {
+      event.target.style.background = "";
+    }
+
+
+  }
+
+  drop() {
+    console.log(this.dragged);
+    event.preventDefault();
+
+    if (event.target.className === "dropzone" && !this.dragged.classList.contains('dropzone') && !this.dragged.classList.contains('ChartsZone') && !this.dragged.classList.contains('letters')) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
     }
     this.matchCountry();
+    this.shuffleEmptyDropZone();
+    this.dragged = undefined;
   }
 }
