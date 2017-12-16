@@ -49,69 +49,69 @@
       <section class="thirdSection">
         <div class="container">
           <div class="row">
-            <div class="countryPlace ChartsZone draggable="false"">
+            <div class="countryPlace ChartsZone" draggable="false">
 
             </div>
           </div>
         </div>
       </section class="fourthSection">
+    </div>
 
-
-      <div class="modal fade"  id="myModal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-            </div>
-            <div class="modal-body">
-              Username: <input type="text" class="userNameInput"></input>
-            </div>
-            <div class=" modalButtons">
-              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Easy</button>
-              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Medium</button>
-              <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Hard</button>
-            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="successModal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Very good answer + 100 points !!!</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class=" modalButtons">
-              <button type="button" class="btn btn-primary btnModal btnGoodAnswer" data-dismiss="modal">Next country</button>
-              <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
-            </div>
+          <div class="modal-body">
+            Username: <input type="text" class="userNameInput"></input>
           </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="failModal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Oh no! You are so bad ;(</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class=" modalButtons">
-              <button type="button" class="btn btn-primary btnModal btnWrongAnswer" data-dismiss="modal">One more time</button>
-              <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
-            </div>
+          <div class=" modalButtons">
+            <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Easy</button>
+            <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Medium</button>
+            <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Hard</button>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="successModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Very good answer + 100 points !!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          </div>
+          <div class=" modalButtons">
+            <button type="button" class="btn btn-primary btnModal btnGoodAnswer" data-dismiss="modal">Next country</button>
+            <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="failModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Oh no! You are so bad ;(</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          </div>
+          <div class=" modalButtons">
+            <button type="button" class="btn btn-primary btnModal btnWrongAnswer" data-dismiss="modal">One more time</button>
+            <button type="button" class="btn btn-primary btnModal btnFinishGame" data-dismiss="modal">Finish game and save score</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div class="modal fade" id="gameOverModal">
       <div class="modal-dialog" role="document">
@@ -197,7 +197,7 @@
         $('#myModal').modal('show');
       });
 
-    $('#myModal').addClass('blackBagroundModal');
+      $('#myModal').addClass('blackBagroundModal');
       /*window.onbeforeunload = function(event) {
             return confirm("Confirm refresh");
           };
