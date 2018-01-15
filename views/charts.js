@@ -1,18 +1,18 @@
 nationalQuiz.ChartsView = class {
+
   constructor(controller) {
     this.controller = controller;
     this.charts = document.getElementsByClassName('countryCharts')[0];
-    this.countryPlace = document.getElementsByClassName('countryPlace')[0];
   }
 
 
   drawCharts(tableLetters) {
     let countryCharts = '';
-
+ // TU WSTAW ID!!!
     for (let i = 0; i < tableLetters.length; i++) {
         countryCharts += `
       <div class ="dropzone">
-        <div class="countryChart" draggable="true"><span class="letters">${tableLetters[i]}</div>
+        <div class="countryChart chart${i}" draggable="true"><span class="letters">${tableLetters[i]}</div>
       </div>
       `
     }
@@ -37,5 +37,12 @@ nationalQuiz.ChartsView = class {
         document.getElementsByClassName('countryCharts')[0].children[i].classList.add('displayNone');
       }
     }
+  }
+  restoreCharts(){
+
+    this.controller.getDroppedLetter().forEach(record=>{
+        this.charts.children[record.id].innerHTML = `  <div class="countryChart chart${record.id}" draggable="true"><span class="letters">${record.letter}</div>`;
+    })
+    this.controller.clearLettersTable();
   }
 }

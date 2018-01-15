@@ -20,7 +20,6 @@ nationalQuiz.Controller = class {
       .then(response => response.json())
       .then(data => {
         const countryId = Math.floor(Math.random() * 250) + 1;
-        this.countryNameView.setDragable();
         this.countryNameView.drawChartBoxes(data, countryId);
         this.flagView.drawFlag(data, countryId);
         this.chartsView.shuffle(data, countryId);
@@ -47,10 +46,27 @@ nationalQuiz.Controller = class {
   handleHint() {
     this.countryNameView.showHint();
   }
-  handleCountryHint(){
+  handleCountryHint() {
     this.countryNameView.showCountryHint();
   }
-  createFinalScore(){
+  createFinalScore() {
     this.gameOverModalView.fillFinalScore();
+  }
+  sendDroppeedLetter(obj) {
+    this.model.countryLetter = obj;
+    this.chartsView.restoreCharts();
+  }
+  getDroppedLetter() {
+    return this.model.countryLetter;
+  }
+  clearLettersTable() {
+    this.model.clearLettersTable();
+  }
+
+  showModal(modalId) {
+    $(modalId).modal({
+      backdrop: 'static',
+      keyboard: false
+    })
   }
 }
