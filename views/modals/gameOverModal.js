@@ -1,60 +1,60 @@
 nationalQuiz.GameOverModalView = class {
-    constructor(controller) {
-        this.controller = controller;
+  constructor(controller) {
+    this.controller = controller;
 
-        this.finalScore = document.getElementsByClassName('finalScore')[0];
+    this.finalScore = document.getElementsByClassName('finalScore')[0];
 
-        this.easyScoreList = document.getElementsByClassName('easyScore')[0];
-        this.mediumScoreList = document.getElementsByClassName('mediumScore')[0];
-        this.hardScoreList = document.getElementsByClassName('hardScore')[0];
+    this.easyScoreList = document.getElementsByClassName('easyScore')[0];
+    this.mediumScoreList = document.getElementsByClassName('mediumScore')[0];
+    this.hardScoreList = document.getElementsByClassName('hardScore')[0];
 
-        this.btnNewGame = document.getElementsByClassName('btnNewGame')[0];
-        this.btnNewGame.addEventListener('click', this.startAgain); // GAME OVER
-    }
+    this.btnNewGame = document.getElementsByClassName('btnNewGame')[0];
+    this.btnNewGame.addEventListener('click', this.startAgain); // GAME OVER
+  }
 
-    startAgain() {
-        location.reload();
-    }
+  startAgain() {
+    location.reload();
+  }
 
-    fillFinalScore() { // nie
-        console.log('a');
-        this.finalScore.innerText = this.controller.getUserData()[this.controller.getUserData().length - 1].score;
-        this.drawTableOfResults();
-    }
+  fillFinalScore() { // nie
+    console.log('a');
+    this.finalScore.innerText = this.controller.getUserData()[this.controller.getUserData().length - 1].score;
+    this.drawTableOfResults();
+  }
 
-    drawTableOfResults() { // GAME OVER MODAL
-        console.log('b');
-        const levelTab = ['easyScore', 'mediumScore', 'hardScore'];
-        let x = [];
-        let results = ['', '', ''];
+  drawTableOfResults() { // GAME OVER MODAL
+    console.log('b');
+    const levelTab = ['easyScore', 'mediumScore', 'hardScore'];
+    let x = [];
+    let results = ['', '', ''];
 
-        let actualLevel = this.controller.getUserData()[this.controller.getUserData().length - 1].level;
+    let actualLevel = this.controller.getUserData()[this.controller.getUserData().length - 1].level;
 
-        for (let i = 0; i <= 2; i++) {
+    for (let i = 0; i <= 2; i++) {
 
-            x[i] = this.controller.getUserData().filter(value => value.level === levelTab[i]); // POPRAWA
-            console.log(x[2]);
-            console.log(this.controller.getUserData());
+      x[i] = this.controller.getUserData().filter(value => value.level === levelTab[i]); // POPRAWA
+      console.log(x[2]);
+      console.log(this.controller.getUserData());
 
-            x[i].forEach(record => {
-                results[i] += `<tr class ="rowResult">
-                    <td><span>${record.name}:</span></td>
+      x[i].forEach((record,id) => {
+        results[i] += `<tr class ="rowResult">
+                    <td><span>${id+1}</span></td>
+                    <td><span>${record.name}</span></td>
                     <td><span>${record.score}</span></td>
-                    <td><span>${record.level}</span></td>
                  </tr>`
-            })
-        }
-
-        this.easyScoreList.innerHTML = results[0];
-        this.mediumScoreList.innerHTML = results[1];
-        this.hardScoreList.innerHTML = results[2];
-
-        if (actualLevel === 'easyScore') {
-            document.getElementsByClassName('easyScore')[0].parentNode.classList.add('show');
-        } else if (actualLevel === 'mediumScore') {
-            document.getElementsByClassName('mediumScore')[0].parentNode.classList.add('show');
-        } else {
-            document.getElementsByClassName('hardScore')[0].parentNode.classList.add('show');
-        }
+      })
     }
+
+    this.easyScoreList.innerHTML = results[0];
+    this.mediumScoreList.innerHTML = results[1];
+    this.hardScoreList.innerHTML = results[2];
+
+    if (actualLevel === 'easyScore') {
+      document.getElementsByClassName('easyScore')[0].parentNode.classList.add('show');
+    } else if (actualLevel === 'mediumScore') {
+      document.getElementsByClassName('mediumScore')[0].parentNode.classList.add('show');
+    } else {
+      document.getElementsByClassName('hardScore')[0].parentNode.classList.add('show');
+    }
+  }
 }

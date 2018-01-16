@@ -193,7 +193,7 @@ blink {
     margin-right: 50px;
 }
 
-.mediumScore td{
+.mediumScore td, .easyScore td, .hardScore td{
     width: 33.33%;
     text-align: center;
 }
