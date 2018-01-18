@@ -23,7 +23,6 @@ nationalQuiz.GameOverModalView = class {
   }
 
   drawTableOfResults() { // GAME OVER MODAL
-    console.log('b');
     const levelTab = ['easyScore', 'mediumScore', 'hardScore'];
     let x = [];
     let results = ['', '', ''];
@@ -33,10 +32,8 @@ nationalQuiz.GameOverModalView = class {
     for (let i = 0; i <= 2; i++) {
 
       x[i] = this.controller.getUserData().filter(value => value.level === levelTab[i]); // POPRAWA
-      console.log(x[2]);
-      console.log(this.controller.getUserData());
 
-      x[i].forEach((record,id) => {
+      x[i].forEach((record, id) => {
         results[i] += `<tr class ="rowResult">
                     <td><span>${id+1}</span></td>
                     <td><span>${record.name}</span></td>
@@ -50,11 +47,11 @@ nationalQuiz.GameOverModalView = class {
     this.hardScoreList.innerHTML = results[2];
 
     if (actualLevel === 'easyScore') {
-      document.getElementsByClassName('easyScore')[0].parentNode.classList.add('show');
+      document.getElementsByClassName('easyCard')[0].parentNode.classList.add('show');
     } else if (actualLevel === 'mediumScore') {
-      document.getElementsByClassName('mediumScore')[0].parentNode.classList.add('show');
-    } else {
-      document.getElementsByClassName('hardScore')[0].parentNode.classList.add('show');
+      document.getElementsByClassName('mediumCard')[0].parentNode.classList.add('show');
+    } else if (actualLevel === 'hardScore') {
+      document.getElementsByClassName('hardCard')[0].parentNode.classList.add('show');
     }
   }
 }

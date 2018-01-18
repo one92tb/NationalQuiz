@@ -8,20 +8,20 @@ nationalQuiz.CountryNameView = class {
     this.charts = document.getElementsByClassName('countryChart');
     this.chartZone = document.getElementsByClassName('ChartsZone');
 
-    for (let i = 0; i <= 1; i++) {
-      this.chartZone[i].addEventListener('drop', this.drop.bind(this));
-      this.chartZone[i].addEventListener('dragstart', this.dragStart.bind(this));
-      this.chartZone[i].addEventListener('drag', this.drag);
-      this.chartZone[i].addEventListener('dragend', this.dragEnd.bind(this));
-      this.chartZone[i].addEventListener('dragover', this.dragOver.bind(this));
-      this.chartZone[i].addEventListener('dragenter', this.dragEnter());
-      this.chartZone[i].addEventListener('dragleave', this.dragLeave());
-    }
 
     this.successModal = '#successModal';
     this.failModal = '#failModal';
     this.gameOverModal = '#gameOverModal';
     this.blinkTable = [];
+
+
+    document.addEventListener('drop', this.drop.bind(this));
+    document.addEventListener('dragstart', this.dragStart.bind(this));
+    document.addEventListener('drag', this.drag);
+    document.addEventListener('dragend', this.dragEnd.bind(this));
+    document.addEventListener('dragover', this.dragOver.bind(this));
+    document.addEventListener('dragenter', this.dragEnter());
+    document.addEventListener('dragleave', this.dragLeave());
   }
 
   drawChartBoxes(data, countryId) {
@@ -35,21 +35,35 @@ nationalQuiz.CountryNameView = class {
         countryCharts += `<div class="hideEmptySpace dropzone" draggable="false"></div>`
       }
     }
+
     this.countryPlace.innerHTML = countryCharts;
+
+    this.dropzoneList = Array.from(document.getElementsByClassName('dropzone')[0]);
+    console.log(this.dropzoneList);
   }
 
   matchCountry() {
 
-    let checkResult = Array.from(this.countryPlace.children).every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
-    console.log(Array.from(this.countryPlace.children).every(child => child.children[0] !== undefined && !child.children[0].classList.contains('countryChart'))); //error
+    let onlyVisibleLetter = Array.from(this.countryPlace.children).filter(child => (!child.classList.contains('hideEmptySpace') ? child : null));
+    console.log(onlyVisibleLetter);
 
-    let result = '';
+    let checkResult = onlyVisibleLetter.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
+
 
 
     if (checkResult === true) {
-      for (let i = 0; i < this.country.length; i++) { // concat string, this is our result
+      /*for (let i = 0; i < this.country.length; i++) { // concat string, this is our result
         result += `${this.countryPlace.children[i].children[0].innerText}`;
-      }
+      }*/
+      let result = '';
+
+      Array.from(this.countryPlace.children).forEach(node => {
+        if (!node.classList.contains('hideEmptySpace')) {
+          result += `${node.children[0].children[0].innerText}`;
+        }
+      });
+      console.log(result);
+
       if (result === this.country) { // compare result with country name
         console.log(this);
         this.setBackgroundLetter('green');
@@ -122,7 +136,6 @@ nationalQuiz.CountryNameView = class {
 
     this.controller.updateScore(-1000);
 
-    // przywrocic do countrycharts
     Array.from(this.countryPlace.children).forEach((record, id) => {
       if (record.children[0] && record.children[0].tagName === 'DIV') {
         console.log(record.children[0].classList[1].match(/\d+/g)[0], record.children[0].children[0].innerText);
@@ -150,30 +163,25 @@ nationalQuiz.CountryNameView = class {
 
   }
 
-  drag(event) {
-
-  }
+  drag(event) {}
 
   dragStart() {
+    console.log(event.target);
+    if (!event.target.classList.contains('countryChart') || event.target === undefined) {
+      event.preventDefault();
+    }
     this.dragged = event.target;
-
   }
 
-  dragEnd() {
-
-  }
+  dragEnd() {}
 
   dragOver() {
     event.preventDefault();
   }
 
-  dragEnter() {
+  dragEnter() {}
 
-  }
-
-  dragLeave() {
-
-  }
+  dragLeave() {}
 
   drop() {
 
@@ -198,6 +206,7 @@ nationalQuiz.CountryNameView = class {
     this.matchCountry();
     this.shuffleEmptyDropZone();
     this.dragged = undefined;
+
   }
 
 

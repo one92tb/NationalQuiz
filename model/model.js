@@ -11,12 +11,12 @@ nationalQuiz.Model = class {
         if(!localStorage.letters){
           localStorage.letters = JSON.stringify(this.letters);
         }
-
     }
 
     set userData(obj) {
         this.user = JSON.parse(localStorage.user);
         this.user.push(obj);
+        this.user.sort((a,b) =>b.score-a.score);
         localStorage.user = JSON.stringify(this.user);
     }
 
@@ -47,7 +47,4 @@ nationalQuiz.Model = class {
       this.letters = [];
       localStorage.letters = JSON.stringify(this.letters);
     }
-
-
-
 }

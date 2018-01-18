@@ -6,7 +6,6 @@ nationalQuiz.Controller = class {
     this.flagView = flagView;
     this.chartsView = chartsView;
     this.userView = userView;
-
     this.initModalView = initModalView;
     this.successModalView = successModalView;
     this.failModalView = failModalView;
