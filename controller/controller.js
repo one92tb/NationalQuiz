@@ -30,14 +30,9 @@ nationalQuiz.Controller = class {
     this.model.userData = obj;
     this.userView.refreshUserData();
   }
-  updateScore(score) {
-    this.model.updateUserScore(score);
-    this.userView.refreshUserData();
-  }
 
-  updateLife(life) {
-    console.log('aaa');
-    this.model.removeUserLife(life);
+  updateData(score, life){
+    this.model.updateUserData(score, life);
     this.userView.refreshUserData();
   }
   getUserData() {

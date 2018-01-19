@@ -24,17 +24,11 @@ nationalQuiz.Model = class {
     return JSON.parse(localStorage.user);
   }
 
-  updateUserScore(score) {
-    this.user = JSON.parse(localStorage.user); //blad bo wybiera ost
-    let lastUser = this.user.reduce((prev, current) => (prev.id > current.id) ? prev : current)
-    lastUser.score += score;
-    localStorage.user = JSON.stringify(this.user);
-  }
-  removeUserLife(life) {
+  updateUserData(score, life) {
     this.user = JSON.parse(localStorage.user);
-    let lastUser = this.user.reduce((prev, current) => (prev.id > current.id) ? prev : current)
-    console.log(lastUser);
+    let lastUser = this.user.reduce((prev, current) => (prev.id > current.id) ? prev : current);
     lastUser.life += life;
+    lastUser.score += score;
     localStorage.user = JSON.stringify(this.user);
   }
   set countryLetter(obj) {
