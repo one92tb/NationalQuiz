@@ -11,17 +11,34 @@ nationalQuiz.Controller = class {
     this.failModalView = failModalView;
     this.gameOverModalView = gameOverModalView;
 
-    this.fetchDataApi();
   }
 
-  fetchDataApi() {
+  fetchDataApi(level) {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
       .then(data => {
-        const countryId = Math.floor(Math.random() * 250) + 1;
-        this.countryNameView.drawChartBoxes(data, countryId);
-        this.flagView.drawFlag(data, countryId);
-        this.chartsView.shuffle(data, countryId);
+        console.log(data);
+        let country;
+        let countryId;
+
+        if (level === "easy") {
+          country = data.filter(el => el.region === "Europe");
+          countryId = Math.floor(Math.random() * country.length) + 1;
+          console.log(country);
+        } else if (level === "medium") {
+          country = data.filter(el => el.region === "Asia" || el.region === "Americas");
+          countryId = Math.floor(Math.random() * country.length) + 1;
+          console.log(country);
+        } else {
+          country = data.filter(el => el.region === "Africa" || el.region === "Oceania");
+          countryId = Math.floor(Math.random() * country.length) + 1;
+          console.log(country);
+        }
+
+
+        this.countryNameView.drawChartBoxes(country, countryId);
+        this.flagView.drawFlag(country, countryId);
+        this.chartsView.shuffle(country, countryId);
         this.countryNameView.shuffleEmptyDropZone();
       });
   }
@@ -31,7 +48,7 @@ nationalQuiz.Controller = class {
     this.userView.refreshUserData();
   }
 
-  updateData(score, life){
+  updateData(score, life) {
     this.model.updateUserData(score, life);
     this.userView.refreshUserData();
   }

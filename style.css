@@ -1,7 +1,8 @@
 HTML,
 body {
     min-height: 100%;
-    background: lightblue url("img/earth-map.jpeg") no-repeat fixed;
+
+    background: url("img/earth-map.jpeg") no-repeat fixed;
     font-family: 'Joti One', cursive;
 }
 

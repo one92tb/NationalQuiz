@@ -31,6 +31,7 @@ nationalQuiz.CountryNameView = class {
 
     for (let i = 0; i < data[countryId].name.length; i++) {
       if (data[countryId].name[i] !== ' ') {
+        console.log(data[countryId].name[i])
         countryCharts += `<div class="dropzone" id ="${i}" draggable="false"></div>`
       } else {
         countryCharts += `<div class="hideEmptySpace dropzone" draggable="false"></div>`
