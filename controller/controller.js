@@ -10,7 +10,6 @@ nationalQuiz.Controller = class {
     this.successModalView = successModalView;
     this.failModalView = failModalView;
     this.gameOverModalView = gameOverModalView;
-
   }
 
   fetchDataApi(level) {
