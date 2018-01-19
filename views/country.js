@@ -22,6 +22,7 @@ nationalQuiz.CountryNameView = class {
     document.addEventListener('dragover', this.dragOver.bind(this));
     document.addEventListener('dragenter', this.dragEnter());
     document.addEventListener('dragleave', this.dragLeave());
+
   }
 
   drawChartBoxes(data, countryId) {
@@ -52,9 +53,7 @@ nationalQuiz.CountryNameView = class {
 
 
     if (checkResult === true) {
-      /*for (let i = 0; i < this.country.length; i++) { // concat string, this is our result
-        result += `${this.countryPlace.children[i].children[0].innerText}`;
-      }*/
+
       let result = '';
 
       Array.from(this.countryPlace.children).forEach(node => {
@@ -72,7 +71,7 @@ nationalQuiz.CountryNameView = class {
       } else {
         this.setBackgroundLetter('red');
         this.controller.updateLife(-1);
-        if (this.controller.getUserData()[this.controller.getUserData().length - 1].life < 1) {
+        if (this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current).life < 1) {
           this.controller.createFinalScore(); // change color to white, when checkResult is false;
           window.addEventListener('load', this.controller.showModal(this.gameOverModal));
         } else {
@@ -206,8 +205,5 @@ nationalQuiz.CountryNameView = class {
     this.matchCountry();
     this.shuffleEmptyDropZone();
     this.dragged = undefined;
-
   }
-
-
 }

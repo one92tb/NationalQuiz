@@ -18,7 +18,8 @@ nationalQuiz.GameOverModalView = class {
 
   fillFinalScore() { // nie
     console.log('a');
-    this.finalScore.innerText = this.controller.getUserData()[this.controller.getUserData().length - 1].score;
+    this.lastObj = this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current);
+    this.finalScore.innerText = this.lastObj.score; // blad
     this.drawTableOfResults();
   }
 
@@ -27,7 +28,7 @@ nationalQuiz.GameOverModalView = class {
     let x = [];
     let results = ['', '', ''];
 
-    let actualLevel = this.controller.getUserData()[this.controller.getUserData().length - 1].level;
+    let actualLevel = this.lastObj.level;  // blad
 
     for (let i = 0; i <= 2; i++) {
 

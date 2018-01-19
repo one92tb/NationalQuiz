@@ -11,6 +11,7 @@ nationalQuiz.InitModalView = class {
     this.easyButton.addEventListener('click', this.easyMode.bind(this));
     this.mediumButton.addEventListener('click', this.mediumMode.bind(this));
     this.hardButton.addEventListener('click', this.hardMode.bind(this));
+
   }
 
   easyMode() {
@@ -24,11 +25,12 @@ nationalQuiz.InitModalView = class {
   }
 
   setBasicValue(numberOfLife, score, level) {
-    this.controller.save({
+    this.controller.saveInitData({
       name: this.userNameInput.value,
       life: numberOfLife,
       score: score,
-      level: level
+      level: level,
+      id: this.controller.getUserData().length
     });
   }
 }

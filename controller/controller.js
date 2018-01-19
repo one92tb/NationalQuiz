@@ -25,7 +25,8 @@ nationalQuiz.Controller = class {
         this.countryNameView.shuffleEmptyDropZone();
       });
   }
-  save(obj) {
+  saveInitData(obj) {
+    console.log(obj);
     this.model.userData = obj;
     this.userView.refreshUserData();
   }
@@ -35,6 +36,7 @@ nationalQuiz.Controller = class {
   }
 
   updateLife(life) {
+    console.log('aaa');
     this.model.removeUserLife(life);
     this.userView.refreshUserData();
   }
