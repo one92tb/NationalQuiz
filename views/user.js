@@ -8,6 +8,7 @@ nationalQuiz.UserView = class {
     this.userValue = document.getElementsByClassName('userValue')[0];
     this.lifeValue = document.getElementsByClassName('lifeValue')[0];
     this.scoreValue = document.getElementsByClassName('scoreValue')[0];
+    this.moneyValue = document.getElementsByClassName('moneyValue')[0];
 
     this.btnHint = document.getElementsByClassName('btnHint')[0];
     this.btnShowCountry = document.getElementsByClassName('btnShowCountry')[0];
@@ -24,7 +25,7 @@ nationalQuiz.UserView = class {
     console.log(lastUser);
 
     this.userValue.innerText = lastUser.name;
-
+    this.moneyValue.innerText = lastUser.money;
     this.counter = lastUser.life;
 
     // console.log(this.counter);
@@ -41,11 +42,11 @@ nationalQuiz.UserView = class {
   }
 
   clickHint() {
-    (this.scoreValue.innerText < 100) ? alert('Your score is too low'): this.controller.handleHint();
+    (this.moneyValue.innerText < 100) ? alert('Your score is too low'): this.controller.handleHint();
   }
 
   clickCountryHint() {
-    (this.scoreValue.innerText < 1000) ? alert('Your score is too low'): this.controller.handleCountryHint();
+    (this.moneyValue.innerText < 1000) ? alert('Your score is too low'): this.controller.handleCountryHint();
   }
   restartGame() {
     this.controller.createFinalScore();

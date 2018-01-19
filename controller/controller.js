@@ -47,8 +47,8 @@ nationalQuiz.Controller = class {
     this.userView.refreshUserData();
   }
 
-  updateData(score, life) {
-    this.model.updateUserData(score, life);
+  updateData(score, life, money) {
+    this.model.updateUserData(score, life, money);
     this.userView.refreshUserData();
   }
   getUserData() {

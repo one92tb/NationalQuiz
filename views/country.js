@@ -53,8 +53,8 @@ nationalQuiz.CountryNameView = class {
 
     let countryName = '';
 
-    this.country.split('').forEach(letter=>{
-      if(letter !== ' '){
+    this.country.split('').forEach(letter => {
+      if (letter !== ' ') {
         countryName += letter;
       }
     })
@@ -73,11 +73,11 @@ nationalQuiz.CountryNameView = class {
       if (result === countryName) { // compare result with country name
         console.log(this);
         this.setBackgroundLetter('green');
-        this.controller.updateData(100, 0);
+        this.controller.updateData(100, 0, 100);
         window.addEventListener('load', this.controller.showModal(this.successModal));
       } else {
         this.setBackgroundLetter('red');
-        this.controller.updateData(0, -1);
+        this.controller.updateData(0, -1, 0);
         if (this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current).life < 1) {
           this.controller.createFinalScore(); // change color to white, when checkResult is false;
           window.addEventListener('load', this.controller.showModal(this.gameOverModal));
@@ -118,7 +118,7 @@ nationalQuiz.CountryNameView = class {
     this.blinkingDivId = Array.from(this.dropzoneDivs)[this.counter].id;
     this.counter++;
     this.blinkTable.push(this.blinkId);
-    this.controller.updateData(-100, 0);
+    this.controller.updateData(0, 0, -100);
     setTimeout(this.removeHint.bind(this), 10000);
 
   }
@@ -140,7 +140,7 @@ nationalQuiz.CountryNameView = class {
 
   showCountryHint() {
 
-    this.controller.updateData(-1000, 0);
+    this.controller.updateData(0, 0, -1000);
 
     Array.from(this.countryPlace.children).forEach((record, id) => {
       if (record.children[0] && record.children[0].tagName === 'DIV') {

@@ -24,11 +24,12 @@ nationalQuiz.Model = class {
     return JSON.parse(localStorage.user);
   }
 
-  updateUserData(score, life) {
+  updateUserData(score, life, money) {
     this.user = JSON.parse(localStorage.user);
     let lastUser = this.user.reduce((prev, current) => (prev.id > current.id) ? prev : current);
     lastUser.life += life;
     lastUser.score += score;
+    lastUser.money += money;
     localStorage.user = JSON.stringify(this.user);
   }
   set countryLetter(obj) {
