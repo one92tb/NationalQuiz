@@ -22,17 +22,19 @@ nationalQuiz.Controller = class {
 
         if (level === "easyScore") {
           country = data.filter(el => el.region === "Europe");
-          countryId = Math.floor(Math.random() * country.length) + 1;
+          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
           console.log(country);
         } else if (level === "mediumScore") {
           country = data.filter(el => el.region === "Asia" || el.region === "Americas");
-          countryId = Math.floor(Math.random() * country.length) + 1;
+          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
           console.log(country);
         } else {
           country = data.filter(el => el.region === "Africa" || el.region === "Oceania");
-          countryId = Math.floor(Math.random() * country.length) + 1;
+          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
           console.log(country);
         }
+
+        console.log(countryId);
 
 
         this.countryNameView.drawChartBoxes(country, countryId);

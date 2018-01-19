@@ -27,6 +27,7 @@ nationalQuiz.CountryNameView = class {
 
   drawChartBoxes(data, countryId) {
     let countryCharts = '';
+
     this.country = data[countryId].name;
 
     for (let i = 0; i < data[countryId].name.length; i++) {
