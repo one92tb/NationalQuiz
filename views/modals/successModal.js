@@ -9,8 +9,9 @@ nationalQuiz.SuccessModalView = class {
         this.btnRestartGame.addEventListener('click', this.restartGame.bind(this));
     }
 
-    goodAnswer() {
-        this.controller.fetchDataApi();
+    goodAnswer() { // poprawić
+          let lastUser = this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current);
+          this.controller.fetchDataApi(lastUser.level);
     }
     restartGame() {
         this.controller.createFinalScore();

@@ -31,7 +31,6 @@ nationalQuiz.CountryNameView = class {
 
     for (let i = 0; i < data[countryId].name.length; i++) {
       if (data[countryId].name[i] !== ' ') {
-        console.log(data[countryId].name[i])
         countryCharts += `<div class="dropzone" id ="${i}" draggable="false"></div>`
       } else {
         countryCharts += `<div class="hideEmptySpace dropzone" draggable="false"></div>`
@@ -47,11 +46,18 @@ nationalQuiz.CountryNameView = class {
   matchCountry() {
 
     let onlyVisibleLetter = Array.from(this.countryPlace.children).filter(child => (!child.classList.contains('hideEmptySpace') ? child : null));
-    console.log(onlyVisibleLetter);
-
     let checkResult = onlyVisibleLetter.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
 
+    console.log(this.country);
+    console.log(this.country.split(''));
 
+    let countryName = '';
+
+    this.country.split('').forEach(letter=>{
+      if(letter !== ' '){
+        countryName += letter;
+      }
+    })
 
     if (checkResult === true) {
 
@@ -64,7 +70,7 @@ nationalQuiz.CountryNameView = class {
       });
       console.log(result);
 
-      if (result === this.country) { // compare result with country name
+      if (result === countryName) { // compare result with country name
         console.log(this);
         this.setBackgroundLetter('green');
         this.controller.updateData(100, 0);

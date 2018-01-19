@@ -14,6 +14,7 @@ nationalQuiz.UserView = class {
 
     this.btnHint.addEventListener('click', this.clickHint.bind(this));
     this.btnShowCountry.addEventListener('click', this.clickCountryHint.bind(this));
+    this.btnRestartGame = document.getElementsByClassName('btnFinishSuccess')[0];
   }
 
   refreshUserData() { // aktualizujemy dane aktualnego użytkownika
@@ -45,5 +46,9 @@ nationalQuiz.UserView = class {
 
   clickCountryHint() {
     (this.scoreValue.innerText < 1000) ? alert('Your score is too low'): this.controller.handleCountryHint();
+  }
+  restartGame() {
+    this.controller.createFinalScore();
+    this.controller.showModal('#gameOverModal');
   }
 }

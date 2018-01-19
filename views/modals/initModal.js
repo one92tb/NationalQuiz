@@ -16,15 +16,15 @@ nationalQuiz.InitModalView = class {
 
   easyMode() {
     this.setBasicValue(3, 1000, 'easyScore');
-    this.controller.fetchDataApi("easy");
+    this.controller.fetchDataApi("easyScore");
   }
   mediumMode() {
     this.setBasicValue(2, 500, 'mediumScore');
-    this.controller.fetchDataApi("medium");
+    this.controller.fetchDataApi("mediumScore");
   }
   hardMode() {
     this.setBasicValue(1, 0, 'hardScore');
-    this.controller.fetchDataApi("hard");
+    this.controller.fetchDataApi("hardScore");
   }
 
   setBasicValue(numberOfLife, score, level) {

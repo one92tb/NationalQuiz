@@ -20,11 +20,11 @@ nationalQuiz.Controller = class {
         let country;
         let countryId;
 
-        if (level === "easy") {
+        if (level === "easyScore") {
           country = data.filter(el => el.region === "Europe");
           countryId = Math.floor(Math.random() * country.length) + 1;
           console.log(country);
-        } else if (level === "medium") {
+        } else if (level === "mediumScore") {
           country = data.filter(el => el.region === "Asia" || el.region === "Americas");
           countryId = Math.floor(Math.random() * country.length) + 1;
           console.log(country);
