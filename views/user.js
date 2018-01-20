@@ -12,10 +12,12 @@ nationalQuiz.UserView = class {
 
     this.btnHint = document.getElementsByClassName('btnHint')[0];
     this.btnShowCountry = document.getElementsByClassName('btnShowCountry')[0];
+    this.btnRestartGame = document.getElementsByClassName('btnFinish')[0]; // PROBLEM!!!
 
     this.btnHint.addEventListener('click', this.clickHint.bind(this));
     this.btnShowCountry.addEventListener('click', this.clickCountryHint.bind(this));
-    this.btnRestartGame = document.getElementsByClassName('btnFinishSuccess')[0];
+    this.btnRestartGame.addEventListener('click', this.restartGame.bind(this));
+
   }
 
   refreshUserData() { // aktualizujemy dane aktualnego użytkownika

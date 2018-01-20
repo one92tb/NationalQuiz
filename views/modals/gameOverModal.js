@@ -16,19 +16,19 @@ nationalQuiz.GameOverModalView = class {
     location.reload();
   }
 
-  fillFinalScore() { // nie
+  fillFinalScore() {
     console.log('a');
     this.lastObj = this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current);
-    this.finalScore.innerText = this.lastObj.score; // blad
+    this.finalScore.innerText = this.lastObj.score;
     this.drawTableOfResults();
   }
 
-  drawTableOfResults() { // GAME OVER MODAL
+  drawTableOfResults() {
     const levelTab = ['easyScore', 'mediumScore', 'hardScore'];
     let x = [];
     let results = ['', '', ''];
 
-    let actualLevel = this.lastObj.level;  // blad
+    let actualLevel = this.lastObj.level;
 
     for (let i = 0; i <= 2; i++) {
 

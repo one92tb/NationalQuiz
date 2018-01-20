@@ -11,31 +11,24 @@ nationalQuiz.Controller = class {
     this.failModalView = failModalView;
     this.gameOverModalView = gameOverModalView;
   }
-
+ // PROBLEM Z ZAPISEM OST WYNIKU
   fetchDataApi(level) {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         let country;
         let countryId;
 
         if (level === "easyScore") {
           country = data.filter(el => el.region === "Europe");
           countryId = Math.floor(Math.random() * (country.length-1)) + 1;
-          console.log(country);
         } else if (level === "mediumScore") {
           country = data.filter(el => el.region === "Asia" || el.region === "Americas");
           countryId = Math.floor(Math.random() * (country.length-1)) + 1;
-          console.log(country);
         } else {
           country = data.filter(el => el.region === "Africa" || el.region === "Oceania");
           countryId = Math.floor(Math.random() * (country.length-1)) + 1;
-          console.log(country);
         }
-
-        console.log(countryId);
-
 
         this.countryNameView.drawChartBoxes(country, countryId);
         this.flagView.drawFlag(country, countryId);

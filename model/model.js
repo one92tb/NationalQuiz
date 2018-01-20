@@ -16,12 +16,15 @@ nationalQuiz.Model = class {
   set userData(obj) {
     this.user = JSON.parse(localStorage.user);
     this.user.push(obj);
-    this.user.sort((a, b) => b.score - a.score);
-    localStorage.user = JSON.stringify(this.user);
+    this.sortUserData();
   }
 
   get userData() {
     return JSON.parse(localStorage.user);
+  }
+  sortUserData() {
+    this.user.sort((a, b) => b.score - a.score);
+    localStorage.user = JSON.stringify(this.user);
   }
 
   updateUserData(score, life, money) {
@@ -30,7 +33,7 @@ nationalQuiz.Model = class {
     lastUser.life += life;
     lastUser.score += score;
     lastUser.money += money;
-    localStorage.user = JSON.stringify(this.user);
+    this.sortUserData();
   }
   set countryLetter(obj) {
     this.letters = JSON.parse(localStorage.letters);
