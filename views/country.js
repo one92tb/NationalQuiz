@@ -26,22 +26,23 @@ nationalQuiz.CountryNameView = class {
   }
 
   drawChartBoxes(data, countryId) {
-    let countryCharts = '';
 
-    this.country = data[countryId].name;
+    let countrySplit = data[countryId].name
+      .split(' ')
+      .map(letter => letter.split(''));
 
-    for (let i = 0; i < data[countryId].name.length; i++) {
-      if (data[countryId].name[i] !== ' ') {
-        countryCharts += `<div class="dropzone" id ="${i}" draggable="false"></div>`
-      } else {
-        countryCharts += `<div class="hideEmptySpace dropzone" draggable="false"></div>`
-      }
-    }
+    let countryPartOfName = '';
 
-    this.countryPlace.innerHTML = countryCharts;
+    countrySplit.forEach((countryPart, id) => {
+      let countryLetterBox = '';
+      countryPart.forEach((letter, id) => {
+        countryLetterBox += `<div class="dropzone countryLetterBox${id}" draggable="false"></div>`;
+      })
+      countryPartOfName += `<div class="countryPartDiv">${countryLetterBox}</div>`;
+    });
 
-    this.dropzoneList = Array.from(document.getElementsByClassName('dropzone')[0]);
-    console.log(this.dropzoneList);
+    this.countryPlace.innerHTML = countryPartOfName;
+    //this.country = data[countryId].name;
   }
 
   matchCountry() {
@@ -113,7 +114,6 @@ nationalQuiz.CountryNameView = class {
     if (Array.from(this.countryPlace.children).every(child => child.children[0])) {
       null;
     } else {
-      
       this.blinkId = Math.random().toString(36).slice(2, 16);
 
       this.dropzoneDivs[this.counter].innerHTML = `<blink class="countryChart" id=${this.blinkId} draggable="false"><span  class="letters">${this.letters[this.dropzoneDivs[this.counter].id]}</span></blink>`;

@@ -23,7 +23,7 @@ HTML, body {
 .nationalQuiz {
   font-size: 60px;
   color: #994d00;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-shadow: -1px 0 #331a00, 0 1px #331a00, 1px 0 #331a00, 0 -1px #331a00;
 }
 
 /* SECTION 1 */
@@ -170,7 +170,10 @@ blink {
 
 .btn-primary {
   background: #994d00!important;
-  border:1px solidg black!important;
+  border:1px solid #331a00!important;
+}
+.btn-primary: hover {
+  color: #331a00;
 }
 
 .finalScoreName {
@@ -184,4 +187,47 @@ blink {
 
 .table tr {
   text-align: center;
+}
+.card-header{
+  background: #994d00!important;
+  border:1px solid #331a00!important;
+  text-align: center;
+  text-decoration: none;
+}
+.card-header a{
+    color: #ffffff;
+}
+.card-header a:hover{
+    color: #331a00;
+    text-decoration: none;
+}
+.modal-header{
+  font-size: 18px;
+  text-align: center;
+  display: block!important;
+}
+.userNameInput{
+  width: 100%;
+  border-radius: 2px;
+}
+.userNameStart{
+  display: block;
+  width: 20%;
+  display:table-cell;
+ vertical-align:middle;
+}
+.modal-body{
+  width: 100%;
+  display:table;
+  padding: 10px 20px 10px 25px!important;
+  justify-content: center;
+}
+.yolo{
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin: 3px;
+}
+.countryPartDiv{
+  margin: 0 30px;
 }
