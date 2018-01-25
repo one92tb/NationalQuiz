@@ -36,38 +36,38 @@ nationalQuiz.CountryNameView = class {
     countrySplit.forEach((countryPart, id) => {
       let countryLetterBox = '';
       countryPart.forEach((letter, id) => {
-        countryLetterBox += `<div class="dropzone countryLetterBox${id}" draggable="false"></div>`;
+        countryLetterBox += `<div class="dropzone countryLetterBox${id} letterSlot" draggable="false"></div>`;
       })
-      countryPartOfName += `<div class="countryPartDiv">${countryLetterBox}</div>`;
+      countryPartOfName += `<div class="countryPartDiv countryPartBox${id}">${countryLetterBox}</div>`;
     });
 
     this.countryPlace.innerHTML = countryPartOfName;
-    //this.country = data[countryId].name;
+    this.country = data[countryId].name;
   }
 
   matchCountry() {
 
-    let onlyVisibleLetter = Array.from(this.countryPlace.children).filter(child => (!child.classList.contains('hideEmptySpace') ? child : null));
-    let checkResult = onlyVisibleLetter.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
+    this.countryLetterSlots = Array.from(document.getElementsByClassName('letterSlot'));
+    let AnswerIsComplete = this.countryLetterSlots.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
     let countryName = '';
-
+    let ourAnswer = '';
+    // Answer from API
     this.country.split('').forEach(letter => {
       if (letter !== ' ') {
         countryName += letter;
       }
     })
 
-    if (checkResult === true) {
+    // ourAnswer
+    if (AnswerIsComplete === true) {
 
-      let result = '';
-
-      Array.from(this.countryPlace.children).forEach(node => {
-        if (!node.classList.contains('hideEmptySpace')) {
-          result += `${node.children[0].children[0].innerText}`;
+      Array.from(this.countryLetterSlots).forEach(countryLetterSlot => {
+        if (countryLetterSlot.children[0].tagName === 'DIV') {
+          ourAnswer += `${countryLetterSlot.children[0].children[0].innerText}`;
         }
       });
 
-      if (result === countryName) { // compare result with country name
+      if (countryName === ourAnswer) { // compare result with country name
         console.log(this);
         this.setBackgroundLetter('green');
         this.controller.updateData(100, 0, 100);
@@ -88,15 +88,67 @@ nationalQuiz.CountryNameView = class {
   }
 
   setBackgroundLetter(color) {
-    for (let i = 0; i < this.countryPlace.children.length; i++) {
-      this.countryPlace.children[i].style.background = color;
-    }
+    Array.from(this.countryLetterSlots).forEach(countryLetterSlot => {
+      countryLetterSlot.style.background = color;
+    })
   }
+
+
+  /*
+  Array.from(this.countryLetterSlots).forEach(countryLetterSlot => {
+    console.log(countryLetterSlot);
+
+  })*/
+
+  /*if (!node.classList.contains('hideEmptySpace')) {
+    result += `${node.children[0].children[0].innerText}`;
+  }*/
+
+
+
+  /*  Array.from(this.countryPlace.children).forEach(node => {
+        console.log(node);
+      });
+
+      let onlyVisibleLetter = Array.from(this.countryPlace.children).filter(child => (!child.classList.contains('hideEmptySpace') ? child : null)); // niepotrzebne
+      let checkResult = onlyVisibleLetter.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
+
+
+
+
+
+      let countryName = '';
+
+      this.country.split('').forEach(letter => { // SKLEJAM ODP Z API BEZ SPACJI
+        if (letter !== ' ') {
+          countryName += letter;
+        }
+      })
+
+
+      if (checkResult === true) { // sprawdzam czy wszystkie pola sa pelne
+
+        let result = '';
+
+        Array.from(this.countryPlace.children).forEach(node => { // TWORZE WYNIK ODPOWIADAJACEGO
+          if (!node.classList.contains('hideEmptySpace')) {
+            result += `${node.children[0].children[0].innerText}`;
+          }
+        });
+
+        // POROWNANIE
+*/
+
+
+
+
+
+
+  // #################################################
 
   shuffleEmptyDropZone() {
     this.letters = this.country.split('');
     this.EmptyDropzoneToHint = Array.from(this.countryPlace.children).filter(children => children.children[0] === undefined && children.classList.contains('hideEmptySpace') === false);
-    console.log(this.EmptyDropzoneToHint);
     this.dropzoneDivs = [];
 
     let a = this.EmptyDropzoneToHint.length;
@@ -154,7 +206,6 @@ nationalQuiz.CountryNameView = class {
 
       Array.from(this.countryPlace.children).forEach((record, id) => {
         if (record.children[0] && record.children[0].tagName === 'DIV') {
-          console.log(record.children[0].classList[1].match(/\d+/g)[0], record.children[0].children[0].innerText);
           this.controller.sendDroppeedLetter({
             id: record.children[0].classList[1].match(/\d+/g)[0],
             letter: record.children[0].children[0].innerText
@@ -180,10 +231,15 @@ nationalQuiz.CountryNameView = class {
 
   }
 
+
+
+
+
+
+
   drag(event) {}
 
   dragStart() {
-    console.log(event.target);
     if (!event.target.classList.contains('countryChart') || event.target === undefined) {
       event.preventDefault();
     }
@@ -203,18 +259,20 @@ nationalQuiz.CountryNameView = class {
   drop() {
 
     event.preventDefault();
+
+
     let replaceLetterId = event.target.parentNode.parentNode.id;
 
-    if (event.target.parentNode.tagName === "BLINK") {
-      if (event.target.parentNode.id) {
-        this.blinkTable.filter((element, id) => (event.target.parentNode.id === element) ? this.blinkTable.splice(id, 1) : null);
-      }
-      event.target.parentNode.remove();
-      this.dragged.parentNode.removeChild(this.dragged);
-      this.countryPlace.children[replaceLetterId].appendChild(this.dragged);
-    } else if (event.target.className === "dropzone" && this.dragged.classList.contains('countryChart') && !event.target.children[0]) {
+    /*  if (event.target.parentNode.tagName === "BLINK") {
+        if (event.target.parentNode.id) {
+          this.blinkTable.filter((element, id) => (event.target.parentNode.id === element) ? this.blinkTable.splice(id, 1) : null);
+        }
+        event.target.parentNode.remove();
+        this.dragged.parentNode.removeChild(this.dragged);
+        this.countryPlace.children[replaceLetterId].appendChild(this.dragged);
+      } else*/
+    if (event.target.classList.contains('dropzone') && !event.target.children[0]) {
       event.target.style.background = "";
-      console.log(this.dragged.parentNode);
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
     } else {
@@ -222,7 +280,7 @@ nationalQuiz.CountryNameView = class {
     }
 
     this.matchCountry();
-    this.shuffleEmptyDropZone();
-    this.dragged = undefined;
+    //  this.shuffleEmptyDropZone();
+    //this.dragged = undefined;
   }
 }
