@@ -85,6 +85,8 @@ nationalQuiz.CountryNameView = class {
     } else {
       this.setBackgroundLetter('white');
     }
+
+
   }
 
   setBackgroundLetter(color) {
@@ -94,71 +96,18 @@ nationalQuiz.CountryNameView = class {
   }
 
 
-  /*
-  Array.from(this.countryLetterSlots).forEach(countryLetterSlot => {
-    console.log(countryLetterSlot);
-
-  })*/
-
-  /*if (!node.classList.contains('hideEmptySpace')) {
-    result += `${node.children[0].children[0].innerText}`;
-  }*/
-
-
-
-  /*  Array.from(this.countryPlace.children).forEach(node => {
-        console.log(node);
-      });
-
-      let onlyVisibleLetter = Array.from(this.countryPlace.children).filter(child => (!child.classList.contains('hideEmptySpace') ? child : null)); // niepotrzebne
-      let checkResult = onlyVisibleLetter.every(child => child.children[0] && child.children[0].tagName === 'DIV' && child.children[0].classList.contains('countryChart'));
-
-
-
-
-
-      let countryName = '';
-
-      this.country.split('').forEach(letter => { // SKLEJAM ODP Z API BEZ SPACJI
-        if (letter !== ' ') {
-          countryName += letter;
-        }
-      })
-
-
-      if (checkResult === true) { // sprawdzam czy wszystkie pola sa pelne
-
-        let result = '';
-
-        Array.from(this.countryPlace.children).forEach(node => { // TWORZE WYNIK ODPOWIADAJACEGO
-          if (!node.classList.contains('hideEmptySpace')) {
-            result += `${node.children[0].children[0].innerText}`;
-          }
-        });
-
-        // POROWNANIE
-*/
-
-
-
-
-
-
-  // #################################################
 
   shuffleEmptyDropZone() {
-    this.letters = this.country.split('');
-    this.EmptyDropzoneToHint = Array.from(this.countryPlace.children).filter(children => children.children[0] === undefined && children.classList.contains('hideEmptySpace') === false);
-    this.dropzoneDivs = [];
 
-    let a = this.EmptyDropzoneToHint.length;
-    let b = 0;
+    let AllBoxesCheckToHint = Array.from(document.getElementsByClassName('letterSlot'));
+    let EmptyBoxesReadyToHint = AllBoxesCheckToHint.filter(box => box.children[0] === undefined);
+    let shuffleBoxesPosition = 0;
+    this.shuffleBoxes = [];
 
-    while (a--) {
-      b = Math.floor(Math.random() * (a + 0));
-      this.dropzoneDivs.push(this.EmptyDropzoneToHint[b]);
-      this.EmptyDropzoneToHint.splice(b, 1);
-
+    while (EmptyBoxesReadyToHint.length--) {
+      shuffleBoxesPosition = Math.floor(Math.random() * (EmptyBoxesReadyToHint.length + 0));
+      this.shuffleBoxes.push(EmptyBoxesReadyToHint[count]);
+      EmptyBoxesReadyToHint.splice(shuffleBoxesPosition, 1);
     }
   }
 
@@ -280,7 +229,7 @@ nationalQuiz.CountryNameView = class {
     }
 
     this.matchCountry();
-    //  this.shuffleEmptyDropZone();
+    this.shuffleEmptyDropZone();
     //this.dragged = undefined;
   }
 }
