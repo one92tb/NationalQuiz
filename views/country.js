@@ -85,8 +85,6 @@ nationalQuiz.CountryNameView = class {
     } else {
       this.setBackgroundLetter('white');
     }
-
-
   }
 
   setBackgroundLetter(color) {
@@ -94,8 +92,6 @@ nationalQuiz.CountryNameView = class {
       countryLetterSlot.style.background = color;
     })
   }
-
-
 
   shuffleEmptyDropZone() {
 
@@ -106,15 +102,18 @@ nationalQuiz.CountryNameView = class {
 
     while (EmptyBoxesReadyToHint.length--) {
       shuffleBoxesPosition = Math.floor(Math.random() * (EmptyBoxesReadyToHint.length + 0));
-      this.shuffleBoxes.push(EmptyBoxesReadyToHint[count]);
+      this.shuffleBoxes.push(EmptyBoxesReadyToHint[shuffleBoxesPosition]);
       EmptyBoxesReadyToHint.splice(shuffleBoxesPosition, 1);
     }
   }
 
   showHint() { // problem !!! problem jest z nr counter
-    if (Array.from(this.countryPlace.children).every(child => child.children[0])) {
-      null;
-    } else {
+    /*    if (Array.from(this.countryPlace.children).every(child => child.children[0])) {
+          null;
+        } else {
+    */
+    console.log(this.countryLetterSlots);
+    /*
       this.blinkId = Math.random().toString(36).slice(2, 16);
 
       this.dropzoneDivs[this.counter].innerHTML = `<blink class="countryChart" id=${this.blinkId} draggable="false"><span  class="letters">${this.letters[this.dropzoneDivs[this.counter].id]}</span></blink>`;
@@ -129,7 +128,11 @@ nationalQuiz.CountryNameView = class {
       this.blinkTable.push(this.blinkId);
       this.controller.updateData(0, 0, -100);
       setTimeout(this.removeHint.bind(this), 10000);
-    }
+*/
+
+
+
+    //  }
   }
 
   removeHint() {
