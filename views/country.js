@@ -31,12 +31,18 @@ nationalQuiz.CountryNameView = class {
       .split(' ')
       .map(letter => letter.split(''));
 
+    this.countryAnswer = this.countrySplit
+      .map(word => word.join(''))
+      .join('');
+
     let countryPartOfName = '';
+    let dropzoneId = 0;
 
     this.countrySplit.forEach((countryPart, id) => {
       let countryLetterBox = '';
       countryPart.forEach((letter, id) => {
-        countryLetterBox += `<div class="dropzone countryLetterBox${id} letterSlot" draggable="false"></div>`;
+        countryLetterBox += `<div class="dropzone countryLetterBox${dropzoneId} letterSlot" draggable="false"></div>`;
+        dropzoneId++;
       })
       countryPartOfName += `<div class="countryPartDiv countryPartBox${id}">${countryLetterBox}</div>`;
     });
@@ -105,27 +111,32 @@ nationalQuiz.CountryNameView = class {
       this.shuffleBoxes.push(EmptyBoxesReadyToHint[shuffleBoxesPosition]);
       EmptyBoxesReadyToHint.splice(shuffleBoxesPosition, 1);
     }
+    //    console.log(this.counter);
+    //    console.log(this.shuffleBoxes);
 
   }
 
   showHint() {
     // if all boxes are filled up
+    console.log(this.counter);
+
     if (this.AllBoxesCheckToHint.every(box => box.children[0])) {
       null;
     } else {
       this.blinkId = Math.random().toString(36).slice(2, 16);
+
       let correctLetterId = parseInt(this.shuffleBoxes[this.counter].classList[1].match(/\d+/g));
-      let countryAnswer = this.countrySplit
-        .map(word => word.join(''))
-        .join('');
 
-      this.shuffleBoxes[this.counter].innerHTML = `<blink class="countryChart" id=${this.blinkId} draggable="false"><span  class="letters">${countryAnswer[correctLetterId]}</span></blink>`; //literka
+      this.shuffleBoxes[this.counter].innerHTML = `<blink class="countryChart" id=${this.blinkId} draggable="false"><span  class="letters">${this.countryAnswer[correctLetterId]}</span></blink>`; //literka
 
-      (this.counter === this.shuffleBoxes.length + 1) ? this.counter = 0: this.counter++;
+      (this.counter + 1 >= this.shuffleBoxes.length) ? this.counter = 0: this.counter++;
+
+      console.log(this.counter, this.shuffleBoxes);
 
       this.blinkTable.push(this.blinkId);
+
       this.controller.updateData(0, 0, -100);
-      setTimeout(this.removeHint.bind(this), 5000);
+      setTimeout(this.removeHint.bind(this), 10000);
     }
   }
 
@@ -139,29 +150,34 @@ nationalQuiz.CountryNameView = class {
 
     this.blinkTable.shift();
 
-    if (this.counter === this.shuffleBoxes.length) {
+    if (this.counter >= this.shuffleBoxes.length) {
       this.counter = 0;
     }
+
+    this.shuffleEmptyDropZone();
+    //    console.log(this.shuffleBoxes);
   }
 
   showCountryHint() {
-    if (Array.from(this.countryPlace.children).every(child => child.children[0])) {
+
+    console.log(this.countryAnswer);
+
+    if (Array.from(this.AllBoxesCheckToHint).every(child => child.children[0])) {
       null;
     } else {
       this.controller.updateData(0, 0, -1000);
 
-      Array.from(this.countryPlace.children).forEach((record, id) => {
+      this.AllBoxesCheckToHint.forEach((record, id) => {
         if (record.children[0] && record.children[0].tagName === 'DIV') {
           this.controller.sendDroppeedLetter({
             id: record.children[0].classList[1].match(/\d+/g)[0],
             letter: record.children[0].children[0].innerText
           })
         }
-
       });
 
-      Array.from(this.countryPlace.children).forEach((record, id) => {
-        record.innerHTML = `<blink class="countryChart" draggable="false"><span  class="letters">${this.letters[id]}</span></blink>`;
+      this.AllBoxesCheckToHint.forEach((record, id) => {
+        record.innerHTML = `<blink class="countryChart" draggable="false"><span  class="letters">${this.countryAnswer[id]}</span></blink>`;
       })
 
       setTimeout(this.removeShowCountry.bind(this), 10000);
@@ -169,7 +185,7 @@ nationalQuiz.CountryNameView = class {
   }
 
   removeShowCountry() {
-    Array.from(this.countryPlace.children).forEach((record, id) => {
+    this.AllBoxesCheckToHint.forEach((record, id) => {
       if (record.children[0].tagName === "BLINK") {
         record.children[0].remove();
       }
@@ -179,9 +195,8 @@ nationalQuiz.CountryNameView = class {
   drag(event) {}
 
   dragStart() {
-    if (!event.target.classList.contains('countryChart') || event.target === undefined) {
-      event.preventDefault();
-    }
+
+    (event.target.classList.contains('countryChart')) ? null: event.preventDefault();
     this.dragged = event.target;
   }
 
@@ -199,18 +214,23 @@ nationalQuiz.CountryNameView = class {
 
     event.preventDefault();
 
+    if (event.target.parentNode.tagName === "BLINK") {
+      console.log(this.counter);
 
-    let replaceLetterId = event.target.parentNode.parentNode.id;
+      let actualBoxId = event.target.parentNode.parentNode.classList[1].match(/\d+/g)[0];
 
-    /*  if (event.target.parentNode.tagName === "BLINK") {
-        if (event.target.parentNode.id) {
-          this.blinkTable.filter((element, id) => (event.target.parentNode.id === element) ? this.blinkTable.splice(id, 1) : null);
-        }
-        event.target.parentNode.remove();
-        this.dragged.parentNode.removeChild(this.dragged);
-        this.countryPlace.children[replaceLetterId].appendChild(this.dragged);
-      } else*/
-    if (event.target.classList.contains('dropzone') && !event.target.children[0]) {
+      if (event.target.parentNode.id) {
+        this.blinkTable.filter((element, id) => (event.target.parentNode.id === element) ? this.blinkTable.splice(id, 1) : null);
+      }
+
+      event.target.parentNode.remove();
+      this.dragged.parentNode.removeChild(this.dragged);
+      this.AllBoxesCheckToHint[actualBoxId].appendChild(this.dragged);
+      if (this.counter > 1) {
+        this.counter--;
+      }
+
+    } else if (event.target.classList.contains('dropzone') && !event.target.children[0]) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
@@ -220,6 +240,6 @@ nationalQuiz.CountryNameView = class {
 
     this.matchCountry();
     this.shuffleEmptyDropZone();
-    //this.dragged = undefined;
+    this.dragged = undefined;
   }
 }

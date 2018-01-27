@@ -11,7 +11,7 @@ nationalQuiz.Controller = class {
     this.failModalView = failModalView;
     this.gameOverModalView = gameOverModalView;
   }
- // PROBLEM Z ZAPISEM OST WYNIKU
+  // PROBLEM Z ZAPISEM OST WYNIKU
   fetchDataApi(level) {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(response => response.json())
@@ -22,13 +22,15 @@ nationalQuiz.Controller = class {
 
         if (level === "easyScore") {
           country = data.filter(el => el.region === "Europe");
-          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
+          countryId = Math.floor(Math.random() * (country.length - 1)) + 1;
         } else if (level === "mediumScore") {
           country = data.filter(el => el.region === "Asia" || el.region === "Americas");
-          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
+          countryId = Math.floor(Math.random() * (country.length - 1)) + 1;
         } else {
           country = data.filter(el => el.region === "Africa" || el.region === "Oceania");
-          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
+          //countryId = Math.floor(Math.random() * (country.length-1)) + 1;
+          console.log(country);
+          countryId = 4;
         }
 
         this.countryNameView.drawChartBoxes(country, countryId);
