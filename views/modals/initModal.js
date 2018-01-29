@@ -28,6 +28,7 @@ nationalQuiz.InitModalView = class {
   }
 
   setBasicValue(numberOfLife, money, score, level) {
+
     this.controller.saveInitData({
       name: this.userNameInput.value,
       life: numberOfLife,

@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bangers|Concert+One" rel="stylesheet">
+
 </head>
 
 <body>
@@ -71,9 +72,9 @@
           <h5 class="modal-title">Welcome to NationalQuiz</h5>
         </div>
         <div class="modal-body">
-          <form name="myform" novalidate>
+          <form name="myform" data-toggle="validator">
             <input type="hidden" required />
-            <span class="userNameStart">Username:</span> <input type="text" class="userNameInput" required="required" />
+            <span class="userNameStart">Username:</span> <input type="text" class="userNameInput">
           </form>
         </div>
         <div class=" modalButtons">
@@ -90,9 +91,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Very good answer + 100 points !!!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
         </div>
         <div class="modalButtons">
           <button type="button" class="btn btn-primary btnModal btnGoodAnswer" data-dismiss="modal">Next country</button>
@@ -107,9 +105,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Oh no! You are so bad ;(</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
         </div>
         <div class="modalButtons">
           <button type="button" class="btn btn-primary btnModal btnWrongAnswer" data-dismiss="modal">One more time</button>
@@ -231,7 +226,6 @@
   <script type="text/javascript" src="views/modals/gameOverModal.js"></script>
 
   <script type="text/javascript" src="main.js"></script>
-
 
 </body>
 
