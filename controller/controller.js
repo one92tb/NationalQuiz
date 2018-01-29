@@ -28,9 +28,8 @@ nationalQuiz.Controller = class {
           countryId = Math.floor(Math.random() * (country.length - 1)) + 1;
         } else {
           country = data.filter(el => el.region === "Africa" || el.region === "Oceania");
-          //countryId = Math.floor(Math.random() * (country.length-1)) + 1;
+          countryId = Math.floor(Math.random() * (country.length-1)) + 1;
           console.log(country);
-          countryId = 4;
         }
 
         this.countryNameView.drawChartBoxes(country, countryId);
@@ -78,5 +77,8 @@ nationalQuiz.Controller = class {
       backdrop: 'static',
       keyboard: false
     })
+  }
+  startHideUserWithoutScoreAndMarkLastScore(){
+    this.gameOverModalView.hideUserWithoutScoreAndMarkLastScore();
   }
 }

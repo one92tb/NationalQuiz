@@ -83,6 +83,7 @@ nationalQuiz.CountryNameView = class {
         if (this.controller.getUserData().reduce((prev, current) => (prev.id > current.id) ? prev : current).life < 1) {
           this.controller.createFinalScore(); // change color to white, when checkResult is false;
           window.addEventListener('load', this.controller.showModal(this.gameOverModal));
+          this.controller.startHideUserWithoutScoreAndMarkLastScore();
         } else {
           window.addEventListener('load', this.controller.showModal(this.failModal));
         }
@@ -155,7 +156,6 @@ nationalQuiz.CountryNameView = class {
     }
 
     this.shuffleEmptyDropZone();
-    //    console.log(this.shuffleBoxes);
   }
 
   showCountryHint() {
@@ -192,11 +192,23 @@ nationalQuiz.CountryNameView = class {
     })
   }
 
-  drag(event) {}
+  drag(event) {
+
+  }
 
   dragStart() {
 
-    (event.target.classList.contains('countryChart')) ? null: event.preventDefault();
+    if (event.target.classList.contains('chartZone')) {
+      event.preventDefault();
+    } else if (event.target.classList.contains('countryChart')) {
+      null;
+    } else {
+      event.preventDefault();
+    }
+  //  (event.target.classList.contains('countryChart')) ? null: event.preventDefault();
+  //  (event.target.classList.contains('chartZone')) ? event.preventDefault(): null;
+
+    console.log(event.target);
     this.dragged = event.target;
   }
 
@@ -215,26 +227,22 @@ nationalQuiz.CountryNameView = class {
     event.preventDefault();
 
     if (event.target.parentNode.tagName === "BLINK") {
-      console.log(this.counter);
-
       let actualBoxId = event.target.parentNode.parentNode.classList[1].match(/\d+/g)[0];
-
       if (event.target.parentNode.id) {
         this.blinkTable.filter((element, id) => (event.target.parentNode.id === element) ? this.blinkTable.splice(id, 1) : null);
       }
-
       event.target.parentNode.remove();
       this.dragged.parentNode.removeChild(this.dragged);
       this.AllBoxesCheckToHint[actualBoxId].appendChild(this.dragged);
       if (this.counter > 1) {
         this.counter--;
       }
-
-    } else if (event.target.classList.contains('dropzone') && !event.target.children[0]) {
+    } else if (event.target.classList.contains('dropzone') && !event.target.children[0] && this.dragged.classList.contains('countryChart')) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
     } else {
+      console.log('aaa');
       return false;
     }
 

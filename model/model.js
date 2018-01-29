@@ -15,6 +15,7 @@ nationalQuiz.Model = class {
 
   set userData(obj) {
     this.user = JSON.parse(localStorage.user);
+    console.log(obj);
     this.user.push(obj);
     this.sortUserData();
   }

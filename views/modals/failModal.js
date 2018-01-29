@@ -8,6 +8,7 @@ nationalQuiz.FailModalView = class {
   //PROBLEM Z SORTOWANIEM
   restartGame() {
     this.controller.createFinalScore();
+    this.controller.startHideUserWithoutScoreAndMarkLastScore();
     this.controller.showModal('#gameOverModal');
   }
 }

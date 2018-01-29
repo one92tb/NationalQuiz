@@ -71,7 +71,10 @@
           <h5 class="modal-title">Welcome to NationalQuiz</h5>
         </div>
         <div class="modal-body">
-          <span class="userNameStart">Username:</span> <input type="text" class="userNameInput"></input>
+          <form name="myform" novalidate>
+            <input type="hidden" required />
+            <span class="userNameStart">Username:</span> <input type="text" class="userNameInput" required="required" />
+          </form>
         </div>
         <div class=" modalButtons">
           <button type="button" class="btn btn-primary btnModal" data-dismiss="modal">Easy (Europe)</button>

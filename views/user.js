@@ -53,5 +53,7 @@ nationalQuiz.UserView = class {
   restartGame() {
     this.controller.createFinalScore();
     this.controller.showModal('#gameOverModal');
+    this.controller.startHideUserWithoutScoreAndMarkLastScore();
+
   }
 }

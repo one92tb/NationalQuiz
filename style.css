@@ -170,8 +170,9 @@ blink {
 
 .btn-primary {
   background: #994d00!important;
-  border:1px solid #331a00!important;
+  border: 1px solid #331a00!important;
 }
+
 .btn-primary: hover {
   color: #331a00;
 }
@@ -188,46 +189,67 @@ blink {
 .table tr {
   text-align: center;
 }
-.card-header{
+
+.card-header {
   background: #994d00!important;
-  border:1px solid #331a00!important;
-  text-align: center;
+  border: 1px solid #331a00!important;
+  text-decoration: none;
+  height: 36px;
+  padding: 0!important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header a {
+  color: #ffffff;
+}
+
+.card-header a:hover {
+  color: #331a00;
   text-decoration: none;
 }
-.card-header a{
-    color: #ffffff;
-}
-.card-header a:hover{
-    color: #331a00;
-    text-decoration: none;
-}
-.modal-header{
+
+.modal-header {
   font-size: 18px;
   text-align: center;
   display: block!important;
 }
-.userNameInput{
+
+.userNameInput {
   width: 100%;
   border-radius: 2px;
 }
-.userNameStart{
+
+.userNameStart {
   display: block;
   width: 20%;
-  display:table-cell;
- vertical-align:middle;
+  display: table-cell;
+  vertical-align: middle;
 }
-.modal-body{
+
+.modal-body {
   width: 100%;
-  display:table;
-  padding: 10px 20px 10px 25px!important;
+  display: table;
+  padding: 10px 20px 10px 20px!important;
   justify-content: center;
 }
-.yolo{
-  width: 100px;
-  height: 100px;
-  background: red;
-  margin: 3px;
+
+.modal-body .card-header {
+  border-radius: .25rem!important;
 }
-.countryPartDiv{
+
+.countryPartDiv {
   margin: 0 30px;
+}
+
+.modalButtons: hover {
+  color: red;
+}
+
+.hideElement {
+  display: none!important;
+}
+.lastScore{
+  background: #ffcc00;
 }

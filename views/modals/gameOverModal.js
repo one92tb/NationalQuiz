@@ -10,6 +10,7 @@ nationalQuiz.GameOverModalView = class {
 
     this.btnNewGame = document.getElementsByClassName('btnNewGame')[0];
     this.btnNewGame.addEventListener('click', this.startAgain); // GAME OVER
+
   }
 
   startAgain() {
@@ -35,7 +36,7 @@ nationalQuiz.GameOverModalView = class {
       x[i] = this.controller.getUserData().filter(value => value.level === levelTab[i]); // POPRAWA
 
       x[i].forEach((record, id) => {
-        results[i] += `<tr class ="rowResult">
+        results[i] += `<tr class ="rowResult ${record.id}">
                     <td><span>${id+1}</span></td>
                     <td><span>${record.name}</span></td>
                     <td><span>${record.score}</span></td>
@@ -54,5 +55,26 @@ nationalQuiz.GameOverModalView = class {
     } else if (actualLevel === 'hardScore') {
       document.getElementsByClassName('hardCard')[0].parentNode.classList.add('show');
     }
+  }
+  hideUserWithoutScoreAndMarkLastScore() {
+    this.ourResults = Array.from(document.getElementsByClassName('rowResult'));
+    console.log(typeof(this.lastObj.id));
+
+    this.ourResults.forEach(tr => {
+      if (parseInt(tr.classList[1]) === this.lastObj.id) {
+        console.log(tr, tr.classList[1], this.lastObj.id)
+        tr.classList.add('lastScore');
+      } else {
+        console.log(tr, tr.classList[1], this.lastObj.id)
+        if (tr.classList.contains('lastScore')) {
+          tr.classList.remove('lastScore');
+        }
+      }
+    });
+
+
+    let tableRowToHide = this.ourResults.filter(tr => parseInt(tr.children[2].innerText) === 0);
+    tableRowToHide.forEach(tr => tr.classList.add('hideElement'));
+
   }
 }

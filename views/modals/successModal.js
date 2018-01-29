@@ -15,6 +15,7 @@ nationalQuiz.SuccessModalView = class {
     }
     restartGame() {
         this.controller.createFinalScore();
+        this.controller.startHideUserWithoutScoreAndMarkLastScore();
         this.controller.showModal('#gameOverModal');
     }
 }
