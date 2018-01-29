@@ -15,13 +15,17 @@ nationalQuiz.CountryNameView = class {
     this.blinkTable = [];
 
 
-    document.addEventListener('drop', this.drop.bind(this));
-    document.addEventListener('dragstart', this.dragStart.bind(this));
-    document.addEventListener('drag', this.drag);
-    document.addEventListener('dragend', this.dragEnd.bind(this));
-    document.addEventListener('dragover', this.dragOver.bind(this));
-    document.addEventListener('dragenter', this.dragEnter());
-    document.addEventListener('dragleave', this.dragLeave());
+
+    for (let i = 0; i < 2; i++) {
+      this.chartZone[i].addEventListener('drop', this.drop.bind(this));
+      this.chartZone[i].addEventListener('dragstart', this.dragStart.bind(this));
+      this.chartZone[i].addEventListener('drag', this.drag);
+      this.chartZone[i].addEventListener('dragend', this.dragEnd.bind(this));
+      this.chartZone[i].addEventListener('dragover', this.dragOver.bind(this));
+      this.chartZone[i].addEventListener('dragenter', this.dragEnter());
+      this.chartZone[i].addEventListener('dragleave', this.dragLeave());
+    }
+
 
   }
 
@@ -198,15 +202,13 @@ nationalQuiz.CountryNameView = class {
 
   dragStart() {
 
-    if (event.target.classList.contains('chartZone')) {
-      event.preventDefault();
-    } else if (event.target.classList.contains('countryChart')) {
+    if (event.target.classList.contains('countryChart')) {
       null;
     } else {
       event.preventDefault();
     }
-  //  (event.target.classList.contains('countryChart')) ? null: event.preventDefault();
-  //  (event.target.classList.contains('chartZone')) ? event.preventDefault(): null;
+    //  (event.target.classList.contains('countryChart')) ? null: event.preventDefault();
+    //  (event.target.classList.contains('chartZone')) ? event.preventDefault(): null;
 
     console.log(event.target);
     this.dragged = event.target;
