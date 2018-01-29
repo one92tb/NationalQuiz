@@ -7,25 +7,21 @@
   <title></title>
   <link href="style.css" rel="stylesheet">
   <link href="fontello/css/heart.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bangers|Concert+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 </head>
 
 <body>
   <header>
     <div class="container header">
-      <span class="nationalQuiz">National Quiz</span>
+      <span class="nationalQuiz"><h1>National Quiz</h1></span>
     </div>
   </header>
 
-  <div class="main">
+  <main class="main">
     <section class="firstSection">
       <div class="container">
         <div class="row">
@@ -63,7 +59,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </main>
 
   <div class="modal fade" id="myModal">
     <div class="modal-dialog" role="document">
@@ -74,7 +70,7 @@
         <div class="modal-body">
           <form name="myform" data-toggle="validator">
             <input type="hidden" required />
-            <span class="userNameStart">Username:</span> <input type="text" class="userNameInput">
+            <label class="userNameStart">Username:</label> <input type="text" class="userNameInput" required/>
           </form>
         </div>
         <div class=" modalButtons">
@@ -204,6 +200,13 @@
       </div>
     </div>
   </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
   <script type="text/javascript">
     $('#myModal').modal({
       backdrop: 'static',
