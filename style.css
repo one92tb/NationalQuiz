@@ -20,7 +20,7 @@ HTML, body {
   font-family: 'Joti One', cursive;
 }
 
-.nationalQuiz {
+.nationalQuiz h1{
   font-size: 60px;
   color: #994d00;
   text-shadow: -1px 0 #331a00, 0 1px #331a00, 1px 0 #331a00, 0 -1px #331a00;

@@ -14,8 +14,6 @@ nationalQuiz.CountryNameView = class {
     this.gameOverModal = '#gameOverModal';
     this.blinkTable = [];
 
-
-
     for (let i = 0; i < 2; i++) {
       this.chartZone[i].addEventListener('drop', this.drop.bind(this));
       this.chartZone[i].addEventListener('dragstart', this.dragStart.bind(this));
@@ -25,8 +23,6 @@ nationalQuiz.CountryNameView = class {
       this.chartZone[i].addEventListener('dragenter', this.dragEnter());
       this.chartZone[i].addEventListener('dragleave', this.dragLeave());
     }
-
-
   }
 
   drawChartBoxes(data, countryId) {

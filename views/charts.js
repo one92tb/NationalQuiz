@@ -12,7 +12,7 @@ nationalQuiz.ChartsView = class {
     for (let i = 0; i < tableLetters.length; i++) {
         countryCharts += `
       <div class ="dropzone">
-        <div class="countryChart chart${i}" draggable="true"><span class="letters">${tableLetters[i]}</div>
+        <div class="countryChart chart${i}"  ondragstart="event.dataTransfer.setData('text/plain', 'node');" draggable="true"><span class="letters">${tableLetters[i]}</div>
       </div>
       `
     }
